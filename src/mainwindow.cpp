@@ -2,7 +2,7 @@
 #include "config.h"
 #endif
 
-#include "mainwindow.h"
+#include "mainwindow.hpp"
 
 //static
 MainWindow* MainWindow::m_pMainWindow = nullptr;

@@ -1,10 +1,12 @@
 sources = [
   'application.cpp',
   'main.cpp',
+  'mainwindow.cpp',
 ]
 
 headers = [
   'application.hpp',
+  'mainwindow.cpp',
 ]
 
 executable(meson.project_name(),

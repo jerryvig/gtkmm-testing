@@ -3,7 +3,6 @@
 #define _GSM_APPLICATION_H_
 
 #include <gtkmm.h>
-#include <algorithm>
 
 class GsmApplication : public Gtk::Application {
 private:
