@@ -10,8 +10,6 @@ private:
     void load_settings();
     void load_resources();
 
-    void on_help_activate(const Glib::VariantBase&);
-    void on_quit_activate(const Glib::VariantBase&);
 protected:
     GsmApplication();
 public:
