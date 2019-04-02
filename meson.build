@@ -52,9 +52,9 @@ libxml  = dependency('libxml-2.0',  version: '>=2.0')
 extra_flags = [
   '-pedantic',
   '-Wall',
-  '-Wextra',
   '-Wcast-align',
   '-Wchar-subscripts',
+  '-Wextra',
   '-Winline',
   '-Wmissing-declarations',
   '-Wpointer-arith',
