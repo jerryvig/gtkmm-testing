@@ -4,7 +4,7 @@ project('gtkmm-testing',
     'c_std=c11', 'cpp_std=c++17'
   ],
   version: '0.0.1',
-  meson_version: '>=0.43.0',
+  meson_version: '>=0.50.0',
 )
 
 i18n  = import('i18n')

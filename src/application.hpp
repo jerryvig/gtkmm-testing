@@ -3,6 +3,7 @@
 #define _GSM_APPLICATION_H_
 
 #include <gtkmm.h>
+#include "rootwindow.hpp"
 
 class GsmApplication : public Gtk::Application {
 private:
@@ -15,7 +16,7 @@ public:
     static Glib::RefPtr<GsmApplication> get ();
 
     void shutdown();
-    // GtkApplicationWindow *main_window;
+    RootWindow m_RootWindow;
 
 protected:
     virtual void on_activate();

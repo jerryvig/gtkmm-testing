@@ -43,7 +43,7 @@ void GsmApplication::shutdown() {
 void GsmApplication::on_startup() {
     Gtk::Application::on_startup();
 
-    std::cout << "Hola mundo desde on_startup()..." << std::endl;
+
 
     load_resources();
 }
