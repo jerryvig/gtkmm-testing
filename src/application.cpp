@@ -15,17 +15,6 @@ GsmApplication::GsmApplication()
     Glib::set_application_name(_("gtkmm_testing"));
 }
 
-Glib::RefPtr<RootWindow> GsmApplication::create_rootwindow() {
-    //Glib::RefPtr<RootWindow> rootwindow = RootWindow::get();
-
-    //add_window(*(rootwindow.get()));
-
-    //rootwindow->signal_hide().connect(sigc::bind<Glib::RefPtr<RootWindow>>( sigc::mem_fun(*this,
-    //        &GsmApplication::on_hide_window), rootwindow ));
-
-    //return rootwindow;
-}
-
 void GsmApplication::on_hide_window(Glib::RefPtr<RootWindow> window) {
     window.reset();
 }
@@ -39,9 +28,6 @@ Glib::RefPtr<GsmApplication> GsmApplication::get () {
 }
 
 void GsmApplication::on_activate() {
-    // Glib::RefPtr<RootWindow> rootwindow = create_rootwindow();
-    // rootwindow->present();
-
     Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
     builder->add_from_resource("/org/gnome/gtkmm-testing/data/interface.ui");
 

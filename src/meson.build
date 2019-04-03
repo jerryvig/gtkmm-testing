@@ -11,24 +11,23 @@ headers = [
 
 gsm_resource_dir = join_paths(get_option('datadir'), meson.project_name())
 gsm_resource = gnome.compile_resources(
-  'gsm',
+  'gsm-resources',
   'gsm.gresource.xml',
   gresource_bundle: false,
   source_dir: meson.source_root(),
-  install_header: true,
-  install_dir: gsm_resource_dir,
+  install_header: false,
+  export: true,
 )
 
 executable(meson.project_name(),
   sources,
+  gsm_resource,
   include_directories: rootInclude,
   dependencies: [
     gmodule,
     gtkmm,
   ],
   cpp_args: [
-    '-DGSM_RESOURCE_FILE="@0@"'.format(join_paths(
-    get_option('prefix'), gsm_resource_dir, 'gsm.gresource')),
   ],
   install: true,
 )

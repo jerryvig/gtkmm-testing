@@ -15,7 +15,6 @@ protected:
 public:
     static Glib::RefPtr<GsmApplication> get();
 
-    Glib::RefPtr<RootWindow> create_rootwindow();
     void on_hide_window(Glib::RefPtr<RootWindow> window);
 
     void shutdown();
