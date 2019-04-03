@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+    <gresource prefix="/org/gnome/gnome-system-monitor">
+        <file preprocess="xml-stripblanks">data/interface.ui</file>
+    </gresource>
+</gresources>

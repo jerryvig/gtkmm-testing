@@ -2,8 +2,8 @@
 #include <config.h>
 
 #include <glib/gi18n.h>
+#include <gtkmm/builder.h>
 #include <signal.h>
-#include <iostream>
 #include "application.hpp"
 
 void GsmApplication::load_settings() {
@@ -16,14 +16,14 @@ GsmApplication::GsmApplication()
 }
 
 Glib::RefPtr<RootWindow> GsmApplication::create_rootwindow() {
-    Glib::RefPtr<RootWindow> rootwindow = RootWindow::get();
+    //Glib::RefPtr<RootWindow> rootwindow = RootWindow::get();
 
-    add_window(*(rootwindow.get()));
+    //add_window(*(rootwindow.get()));
 
-    rootwindow->signal_hide().connect(sigc::bind<Glib::RefPtr<RootWindow>>( sigc::mem_fun(*this,
-            &GsmApplication::on_hide_window), rootwindow ));
+    //rootwindow->signal_hide().connect(sigc::bind<Glib::RefPtr<RootWindow>>( sigc::mem_fun(*this,
+    //        &GsmApplication::on_hide_window), rootwindow ));
 
-    return rootwindow;
+    //return rootwindow;
 }
 
 void GsmApplication::on_hide_window(Glib::RefPtr<RootWindow> window) {
@@ -39,8 +39,18 @@ Glib::RefPtr<GsmApplication> GsmApplication::get () {
 }
 
 void GsmApplication::on_activate() {
-    Glib::RefPtr<RootWindow> rootwindow = create_rootwindow();
-    rootwindow->present();
+    // Glib::RefPtr<RootWindow> rootwindow = create_rootwindow();
+    // rootwindow->present();
+
+    Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
+    builder->add_from_file("data/interface.ui");
+
+    Gtk::Window* pWindow = nullptr;
+    builder->get_widget("window", pWindow);
+
+    add_window(*pWindow);
+
+    pWindow->present();
 }
 
 int GsmApplication::on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line) {
