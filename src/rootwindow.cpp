@@ -4,18 +4,19 @@
 
 #include "rootwindow.hpp"
 
-//static
-RootWindow* RootWindow::m_pRootWindow = nullptr;
-
 RootWindow::RootWindow() {
-  m_pRootWindow = this;
-
+  set_title("Application Root Window");
+  set_border_width(10);
   set_default_size (800, 600);
 }
 
-//static
-RootWindow* RootWindow::get_root_window() {
-  return m_pRootWindow;
+// static
+Glib::RefPtr<RootWindow> RootWindow::get() {
+    static Glib::RefPtr<RootWindow> singleton;
+    if (!singleton) {
+        singleton = Glib::RefPtr<RootWindow>(new RootWindow());
+    }
+    return singleton;
 }
 
 RootWindow::~RootWindow() {

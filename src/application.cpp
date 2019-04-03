@@ -15,9 +15,23 @@ GsmApplication::GsmApplication()
     Glib::set_application_name(_("gtkmm_testing"));
 }
 
+Glib::RefPtr<RootWindow> GsmApplication::create_rootwindow() {
+    Glib::RefPtr<RootWindow> rootwindow = RootWindow::get();
+
+    add_window(*(rootwindow.get()));
+
+    rootwindow->signal_hide().connect(sigc::bind<Glib::RefPtr<RootWindow>>( sigc::mem_fun(*this,
+            &GsmApplication::on_hide_window), rootwindow ));
+
+    return rootwindow;
+}
+
+void GsmApplication::on_hide_window(Glib::RefPtr<RootWindow> window) {
+    window.reset();
+}
+
 Glib::RefPtr<GsmApplication> GsmApplication::get () {
     static Glib::RefPtr<GsmApplication> singleton;
-
     if (!singleton) {
         singleton = Glib::RefPtr<GsmApplication>(new GsmApplication());
     }
@@ -25,13 +39,15 @@ Glib::RefPtr<GsmApplication> GsmApplication::get () {
 }
 
 void GsmApplication::on_activate() {
+    Glib::RefPtr<RootWindow> rootwindow = create_rootwindow();
+    rootwindow->present();
 }
 
 int GsmApplication::on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line) {
     int argc = 0;
     char** argv = command_line->get_arguments(argc);
 
-    on_activate ();
+    on_activate();
 
     return 0;
 }
@@ -42,8 +58,6 @@ void GsmApplication::shutdown() {
 
 void GsmApplication::on_startup() {
     Gtk::Application::on_startup();
-
-
 
     load_resources();
 }

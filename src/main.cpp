@@ -12,5 +12,5 @@ int main (int argc, char *argv[]) {
     setlocale (LC_ALL, "");
 
     Glib::RefPtr<GsmApplication> application = GsmApplication::get();
-    return application->run (argc, argv);
+    return application->run(argc, argv);
 }

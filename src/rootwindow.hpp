@@ -6,13 +6,11 @@
 
 class RootWindow : public Gtk::Window {
 public:
-  RootWindow();
+  static Glib::RefPtr<RootWindow> get();
   ~RootWindow() override;
 
-  static RootWindow* get_root_window();
-
 protected:
-  static RootWindow* m_pRootWindow;
+    RootWindow();
 };
 
 #endif //_ROOTWINDOW_H
