@@ -43,7 +43,7 @@ void GsmApplication::on_activate() {
     // rootwindow->present();
 
     Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
-    builder->add_from_file("data/interface.ui");
+    builder->add_from_resource("/org/gnome/gtkmm-testing/data/interface.ui");
 
     Gtk::Window* pWindow = nullptr;
     builder->get_widget("window", pWindow);

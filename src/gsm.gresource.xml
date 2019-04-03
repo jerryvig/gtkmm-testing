@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-    <gresource prefix="/org/gnome/gnome-system-monitor">
+    <gresource prefix="/org/gnome/gtkmm-testing">
         <file preprocess="xml-stripblanks">data/interface.ui</file>
     </gresource>
 </gresources>

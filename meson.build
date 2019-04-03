@@ -7,6 +7,7 @@ project('gtkmm-testing',
   meson_version: '>=0.50.0',
 )
 
+gnome = import('gnome')
 i18n  = import('i18n')
 
 cc = meson.get_compiler('c')
@@ -64,9 +65,11 @@ extra_cflags = [
   '-Wmissing-prototypes',
   '-Wnested-externs',
 ]
+extra_cxxflags = [
+]
 
 cflags   = extra_flags + extra_cflags
-cxxflags = extra_flags
+cxxflags = extra_flags + extra_cxxflags
 
 add_project_arguments(cc.get_supported_arguments(cflags),
   language: 'c'
@@ -100,5 +103,5 @@ configure_file(
 
 rootInclude = include_directories('.')
 
-# subdir('data')
+subdir('data')
 subdir('src')
