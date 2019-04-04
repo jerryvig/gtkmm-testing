@@ -1,0 +1,10 @@
+window {
+    background-color: lightgray;
+}
+
+label {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    padding: 5px;
+}

@@ -28,11 +28,20 @@ Glib::RefPtr<GsmApplication> GsmApplication::get () {
 }
 
 void GsmApplication::on_activate() {
+    Glib::RefPtr<Gtk::CssProvider> cssProvider = Gtk::CssProvider::create();
+    cssProvider->load_from_resource("/org/gnome/gtkmm-testing/data/interface.css");
+
     Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
     builder->add_from_resource("/org/gnome/gtkmm-testing/data/interface.ui");
 
     Gtk::Window* pWindow = nullptr;
     builder->get_widget("window", pWindow);
+
+    Glib::RefPtr<Gdk::Screen> screen = pWindow->get_screen();
+
+    //Glib::RefPtr<Gtk::StyleContext> windowStyleContext = pWindow->get_style_context();
+    //windowStyleContext->add_provider(cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
+    Gtk::StyleContext::add_provider_for_screen(screen, cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
 
     add_window(*pWindow);
 
