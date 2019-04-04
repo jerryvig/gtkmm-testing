@@ -34,18 +34,13 @@ void GsmApplication::on_activate() {
     Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
     builder->add_from_resource("/org/gnome/gtkmm-testing/data/interface.ui");
 
-    Gtk::Window* pWindow = nullptr;
-    builder->get_widget("window", pWindow);
-
-    Glib::RefPtr<Gdk::Screen> screen = pWindow->get_screen();
-
-    //Glib::RefPtr<Gtk::StyleContext> windowStyleContext = pWindow->get_style_context();
-    //windowStyleContext->add_provider(cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
+    Glib::RefPtr<Gtk::Window> rootWindow = Glib::RefPtr<Gtk::Window>::cast_static(builder->get_object("window"));
+    Glib::RefPtr<Gdk::Screen> screen = rootWindow->get_screen();
     Gtk::StyleContext::add_provider_for_screen(screen, cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
 
-    add_window(*pWindow);
+    add_window(*(rootWindow.get()));
 
-    pWindow->present();
+    rootWindow->present();
 }
 
 int GsmApplication::on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line) {
