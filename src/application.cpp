@@ -15,10 +15,6 @@ GsmApplication::GsmApplication()
     Glib::set_application_name(_("gtkmm_testing"));
 }
 
-void GsmApplication::on_hide_window(Glib::RefPtr<RootWindow> window) {
-    window.reset();
-}
-
 Glib::RefPtr<GsmApplication> GsmApplication::get () {
     static Glib::RefPtr<GsmApplication> singleton;
     if (!singleton) {
