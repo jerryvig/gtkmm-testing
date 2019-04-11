@@ -42,6 +42,18 @@
                         <property name="width">0</property>
                     </packing>
                 </child>
+                <child>
+                    <object id="last_trade_column_header" class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label">Last Trade</property>
+                        <property name="halign">GTK_ALIGN_CENTER</property>
+                    </object>
+                    <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">0</property>
+                        <property name="width">0</property>
+                    </packing>
+                </child>
             </object>
             <packing>
             </packing>
