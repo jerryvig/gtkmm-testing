@@ -54,6 +54,18 @@
                         <property name="width">0</property>
                     </packing>
                 </child>
+                <child>
+                    <object id="share_change_column_header" class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label">Share Change</property>
+                        <property name="halign">GTK_ALIGN_CENTER</property>
+                    </object>
+                    <packing>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">0</property>
+                        <property name="width">0</property>
+                    </packing>
+                </child>
             </object>
             <packing>
             </packing>
