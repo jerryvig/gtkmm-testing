@@ -52,6 +52,10 @@ void GsmApplication::on_activate() {
     lastTradeColumnHeader->set_events(Gdk::BUTTON_PRESS_MASK);
     lastTradeColumnHeader->signal_button_press_event().connect( sigc::mem_fun(*this, &GsmApplication::onLastTradeColumnHeaderClicked) );
 
+    Glib::RefPtr<Gtk::EventBox> shareChangeColumnHeader = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("share_change_column_header"));
+    shareChangeColumnHeader->set_events(Gdk::BUTTON_PRESS_MASK);
+    shareChangeColumnHeader->signal_button_press_event().connect( sigc::mem_fun(*this, &GsmApplication::onShareChangeColumnHeaderClicked) );
+
     add_window(*(rootWindow.get()));
 
     rootWindow->present();
@@ -96,5 +100,10 @@ bool GsmApplication::onShareBasisColumnHeaderClicked(GdkEventButton* button_even
 
 bool GsmApplication::onLastTradeColumnHeaderClicked(GdkEventButton* button_event) {
     std::cout << "YOU CLICKED THE LAST TRADE COLUMN HEADER." << std::endl;
+    return true;
+}
+
+bool GsmApplication::onShareChangeColumnHeaderClicked(GdkEventButton* button_event) {
+    std::cout << "YOU CLICKED THE SHARE CHANGE COLUMN HEADER." << std::endl;
     return true;
 }

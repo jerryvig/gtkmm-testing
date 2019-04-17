@@ -23,6 +23,7 @@ protected:
     virtual bool onShareCountColumnHeaderClicked(GdkEventButton* button_event);
     virtual bool onShareBasisColumnHeaderClicked(GdkEventButton* button_event);
     virtual bool onLastTradeColumnHeaderClicked(GdkEventButton* button_event);
+    virtual bool onShareChangeColumnHeaderClicked(GdkEventButton* button_event);
 };
 
 #endif /* _GSM_APPLICATION_H_ */
