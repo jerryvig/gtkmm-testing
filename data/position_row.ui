@@ -1,0 +1,143 @@
+<interface>
+    <object id="grid" class="GtkGrid">
+        <property name="visible">True</property>
+        <child>
+            <object id="ticker_column_header" class="GtkEventBox">
+                <property name="visible">True</property>
+                <child>
+                    <object id="ticker_column_label" class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label">SSBW</property>
+                        <property name="halign">GTK_ALIGN_CENTER</property>
+                    </object>
+                </child>
+            </object>
+            <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">0</property>
+                <property name="width">1</property>
+            </packing>
+        </child>
+        <child>
+            <object id="share_count_column_header" class="GtkEventBox">
+                <property name="visible">True</property>
+                <child>
+                    <object id="share_count_column_label" class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label">BBW</property>
+                        <property name="halign">GTK_ALIGN_CENTER</property>
+                    </object>
+                </child>
+            </object>
+            <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">0</property>
+                <property name="width">1</property>
+            </packing>
+        </child>
+        <child>
+            <object id="share_basis_column_header" class="GtkEventBox">
+                <property name="visible">True</property>
+                <child>
+                    <object id="share_basis_column_label" class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label">More data</property>
+                        <property name="halign">GTK_ALIGN_CENTER</property>
+                    </object>
+                </child>
+            </object>
+            <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">0</property>
+                <property name="width">1</property>
+            </packing>
+        </child>
+        <child>
+            <object id="last_trade_column_header" class="GtkEventBox">
+                <property name="visible">True</property>
+                <child>
+                    <object id="last_trade_column_label" class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label">Last Trade</property>
+                        <property name="halign">GTK_ALIGN_CENTER</property>
+                    </object>
+                </child>
+            </object>
+            <packing>
+                <property name="left-attach">3</property>
+                <property name="top-attach">0</property>
+                <property name="width">1</property>
+            </packing>
+        </child>
+        <child>
+            <object id="share_change_column_header" class="GtkEventBox">
+                <property name="visible">True</property>
+                <child>
+                    <object id="share_change_column_label" class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label">Share Change</property>
+                        <property name="halign">GTK_ALIGN_CENTER</property>
+                    </object>
+                </child>
+            </object>
+            <packing>
+                <property name="left-attach">4</property>
+                <property name="top-attach">0</property>
+                <property name="width">1</property>
+            </packing>
+        </child>
+        <child>
+            <object id="position_basis_column_header" class="GtkEventBox">
+                <property name="visible">True</property>
+                <child>
+                    <object id="position_basis_column_label" class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label">Position Basis</property>
+                        <property name="halign">GTK_ALIGN_CENTER</property>
+                    </object>
+                </child>
+            </object>
+            <packing>
+                <property name="left-attach">5</property>
+                <property name="top-attach">0</property>
+                <property name="width">1</property>
+            </packing>
+        </child>
+        <child>
+            <object id="position_value_column_header" class="GtkEventBox">
+                <property name="visible">True</property>
+                <child>
+                    <object id="position_value_column_label" class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label">Position Value</property>
+                        <property name="halign">GTK_ALIGN_CENTER</property>
+                    </object>
+                </child>
+            </object>
+            <packing>
+                <property name="left-attach">6</property>
+                <property name="top-attach">0</property>
+                <property name="width">1</property>
+            </packing>
+        </child>
+        <child>
+            <object id="position_change_column_header" class="GtkEventBox">
+                <property name="visible">True</property>
+                <child>
+                    <object id="position_change_column_label" class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label">Position Change</property>
+                        <property name="halign">GTK_ALIGN_CENTER</property>
+                    </object>
+                </child>
+            </object>
+            <packing>
+                <property name="left-attach">7</property>
+                <property name="top-attach">0</property>
+                <property name="width">1</property>
+            </packing>
+        </child>
+    </object>
+    <packing>
+    </packing>
+</interface>
