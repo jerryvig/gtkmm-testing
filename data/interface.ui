@@ -58,10 +58,15 @@
                     </packing>
                 </child>
                 <child>
-                    <object id="last_trade_column_header" class="GtkLabel">
+                    <object id="last_trade_column_header" class="GtkEventBox">
                         <property name="visible">True</property>
-                        <property name="label">Last Trade</property>
-                        <property name="halign">GTK_ALIGN_CENTER</property>
+                        <child>
+                            <object id="last_trade_column_label" class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="label">Last Trade</property>
+                                <property name="halign">GTK_ALIGN_CENTER</property>
+                            </object>
+                        </child>
                     </object>
                     <packing>
                         <property name="left-attach">3</property>
@@ -70,10 +75,15 @@
                     </packing>
                 </child>
                 <child>
-                    <object id="share_change_column_header" class="GtkLabel">
+                    <object id="share_change_column_header" class="GtkEventBox">
                         <property name="visible">True</property>
-                        <property name="label">Share Change</property>
-                        <property name="halign">GTK_ALIGN_CENTER</property>
+                        <child>
+                            <object id="share_change_column_label" class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="label">Share Change</property>
+                                <property name="halign">GTK_ALIGN_CENTER</property>
+                            </object>
+                        </child>
                     </object>
                     <packing>
                         <property name="left-attach">4</property>
