@@ -1,5 +1,5 @@
 <interface>
-    <object id="grid" class="GtkGrid">
+    <object id="position_row" class="GtkGrid">
         <property name="visible">True</property>
         <child>
             <object id="ticker_column_header" class="GtkEventBox">
@@ -7,7 +7,7 @@
                 <child>
                     <object id="ticker_column_label" class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="label">SSBW</property>
+                        <property name="label">Ticker</property>
                         <property name="halign">GTK_ALIGN_CENTER</property>
                     </object>
                 </child>
@@ -24,7 +24,7 @@
                 <child>
                     <object id="share_count_column_label" class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="label">BBW</property>
+                        <property name="label"># of Shares</property>
                         <property name="halign">GTK_ALIGN_CENTER</property>
                     </object>
                 </child>
@@ -41,7 +41,7 @@
                 <child>
                     <object id="share_basis_column_label" class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="label">More data</property>
+                        <property name="label">Share Basis</property>
                         <property name="halign">GTK_ALIGN_CENTER</property>
                     </object>
                 </child>
@@ -138,6 +138,4 @@
             </packing>
         </child>
     </object>
-    <packing>
-    </packing>
 </interface>

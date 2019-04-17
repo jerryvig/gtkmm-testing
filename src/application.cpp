@@ -13,8 +13,7 @@ void GsmApplication::load_settings() {
 }
 
 GsmApplication::GsmApplication()
-    : Gtk::Application("com.mktneutral.gtkmm_testing", Gio::APPLICATION_HANDLES_COMMAND_LINE),
-    nextRowButton("Next Row Button")
+    : Gtk::Application("com.mktneutral.gtkmm_testing", Gio::APPLICATION_HANDLES_COMMAND_LINE)
 {
     Glib::set_application_name(_("gtkmm_testing"));
 }
@@ -68,6 +67,9 @@ void GsmApplication::on_activate() {
     Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
     builder->add_from_resource("/org/gnome/gtkmm-testing/data/interface.ui");
 
+    Glib::RefPtr<Gtk::Builder> rowBuilder = Gtk::Builder::create();
+    rowBuilder->add_from_resource("/org/gnome/gtkmm-testing/data/position_row.ui");
+
     Glib::RefPtr<Gtk::Window> rootWindow = Glib::RefPtr<Gtk::Window>::cast_static(builder->get_object("window"));
     Glib::RefPtr<Gdk::Screen> screen = rootWindow->get_screen();
     Gtk::StyleContext::add_provider_for_screen(screen, cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
@@ -79,21 +81,9 @@ void GsmApplication::on_activate() {
     add_window(*(rootWindow.get()));
     rootWindow->present();
 
-    nextRowButton.set_visible(true);
-    nextRowButton.set_halign(Gtk::Align::ALIGN_CENTER);
-    grid->attach(nextRowButton, 0, 1, 8, 1);
+    Glib::RefPtr<Gtk::Grid> positionRowGrid = Glib::RefPtr<Gtk::Grid>::cast_static(rowBuilder->get_object("position_row"));
 
-    for (int i = 0; i < 7; ++i) {
-        Gtk::Label *nextLabel = new Gtk::Label("Label " + std::to_string(i));
-        nextLabel->set_visible(true);
-        rowLabels.push_back(nextLabel);
-    }
-
-    int j = 0;
-    for (auto label: rowLabels) {
-        grid->attach(*label, 3, 2 + j, 1, 1);
-        j++;
-    }
+    grid->attach(*(positionRowGrid.get()), 0, 2, 8, 1);
 }
 
 int GsmApplication::on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line) {

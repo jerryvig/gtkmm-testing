@@ -30,7 +30,6 @@ protected:
     virtual bool onPositionValueColumnHeaderClicked(GdkEventButton* button_event);
     virtual bool onPositionChangeColumnHeaderClicked(GdkEventButton* button_event);
 
-    Gtk::Button nextRowButton;
     std::vector<Gtk::Label*> rowLabels;
 };
 

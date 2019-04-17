@@ -8,3 +8,8 @@ label {
     font-weight: bold;
     padding: 5px;
 }
+
+grid {
+    border: 0;
+    padding: 0;
+}
