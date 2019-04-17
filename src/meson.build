@@ -1,10 +1,12 @@
 sources = [
+  'positionrow.cpp',
   'application.cpp',
   'main.cpp',
 ]
 
 headers = [
   'application.hpp',
+  'positionrow.hpp',
 ]
 
 gsm_resource_dir = join_paths(get_option('datadir'), meson.project_name())
