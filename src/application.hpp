@@ -24,6 +24,9 @@ protected:
     virtual bool onShareBasisColumnHeaderClicked(GdkEventButton* button_event);
     virtual bool onLastTradeColumnHeaderClicked(GdkEventButton* button_event);
     virtual bool onShareChangeColumnHeaderClicked(GdkEventButton* button_event);
+    virtual bool onPositionBasisColumnHeaderClicked(GdkEventButton* button_event);
+    virtual bool onPositionValueColumnHeaderClicked(GdkEventButton* button_event);
+    virtual bool onPositionChangeColumnHeaderClicked(GdkEventButton* button_event);
 };
 
 #endif /* _GSM_APPLICATION_H_ */

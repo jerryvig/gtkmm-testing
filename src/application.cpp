@@ -56,6 +56,18 @@ void GsmApplication::on_activate() {
     shareChangeColumnHeader->set_events(Gdk::BUTTON_PRESS_MASK);
     shareChangeColumnHeader->signal_button_press_event().connect( sigc::mem_fun(*this, &GsmApplication::onShareChangeColumnHeaderClicked) );
 
+    Glib::RefPtr<Gtk::EventBox> positionBasisColumnHeader = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("position_basis_column_header"));
+    positionBasisColumnHeader->set_events(Gdk::BUTTON_PRESS_MASK);
+    positionBasisColumnHeader->signal_button_press_event().connect( sigc::mem_fun(*this, &GsmApplication::onPositionBasisColumnHeaderClicked) );
+
+    Glib::RefPtr<Gtk::EventBox> positionValueColumnHeader = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("position_value_column_header"));
+    positionValueColumnHeader->set_events(Gdk::BUTTON_PRESS_MASK);
+    positionValueColumnHeader->signal_button_press_event().connect( sigc::mem_fun(*this, &GsmApplication::onPositionValueColumnHeaderClicked) );
+
+    Glib::RefPtr<Gtk::EventBox> positionChangeColumnHeader = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("position_change_column_header"));
+    positionChangeColumnHeader->set_events(Gdk::BUTTON_PRESS_MASK);
+    positionChangeColumnHeader->signal_button_press_event().connect( sigc::mem_fun(*this, &GsmApplication::onPositionChangeColumnHeaderClicked) );
+
     add_window(*(rootWindow.get()));
 
     rootWindow->present();
@@ -105,5 +117,20 @@ bool GsmApplication::onLastTradeColumnHeaderClicked(GdkEventButton* button_event
 
 bool GsmApplication::onShareChangeColumnHeaderClicked(GdkEventButton* button_event) {
     std::cout << "YOU CLICKED THE SHARE CHANGE COLUMN HEADER." << std::endl;
+    return true;
+}
+
+bool GsmApplication::onPositionBasisColumnHeaderClicked(GdkEventButton* button_event) {
+    std::cout << "YOU CLICKED THE POSITION BASIS COLUMN HEADER." << std::endl;
+    return true;
+}
+
+bool GsmApplication::onPositionValueColumnHeaderClicked(GdkEventButton* button_event) {
+    std::cout << "YOU CLICKED THE POSITION VALUE COLUMN HEADER." << std::endl;
+    return true;
+}
+
+bool GsmApplication::onPositionChangeColumnHeaderClicked(GdkEventButton* button_event) {
+    std::cout << "YOU CLICKED THE POSITION CHANGE COLUMN HEADER." << std::endl;
     return true;
 }
