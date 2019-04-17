@@ -57,7 +57,6 @@ void GsmApplication::addColumnHeaderClickHandlers(Glib::RefPtr<Gtk::Builder>& bu
     Glib::RefPtr<Gtk::EventBox> positionChangeColumnHeader = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("position_change_column_header"));
     positionChangeColumnHeader->set_events(Gdk::BUTTON_PRESS_MASK);
     positionChangeColumnHeader->signal_button_press_event().connect( sigc::mem_fun(*this, &GsmApplication::onPositionChangeColumnHeaderClicked) );
-
 }
 
 void GsmApplication::on_activate() {
