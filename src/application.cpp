@@ -25,17 +25,7 @@ Glib::RefPtr<GsmApplication> GsmApplication::get () {
     return singleton;
 }
 
-void GsmApplication::on_activate() {
-    Glib::RefPtr<Gtk::CssProvider> cssProvider = Gtk::CssProvider::create();
-    cssProvider->load_from_resource("/org/gnome/gtkmm-testing/data/interface.css");
-
-    Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
-    builder->add_from_resource("/org/gnome/gtkmm-testing/data/interface.ui");
-
-    Glib::RefPtr<Gtk::Window> rootWindow = Glib::RefPtr<Gtk::Window>::cast_static(builder->get_object("window"));
-    Glib::RefPtr<Gdk::Screen> screen = rootWindow->get_screen();
-    Gtk::StyleContext::add_provider_for_screen(screen, cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
-
+void GsmApplication::addColumnHeaderClickHandlers(Glib::RefPtr<Gtk::Builder>& builder) {
     Glib::RefPtr<Gtk::EventBox> tickerColumnHeader = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("ticker_column_header"));
     tickerColumnHeader->set_events(Gdk::BUTTON_PRESS_MASK);
     tickerColumnHeader->signal_button_press_event().connect( sigc::mem_fun(*this, &GsmApplication::onTickerColumnHeaderClicked) );
@@ -68,8 +58,22 @@ void GsmApplication::on_activate() {
     positionChangeColumnHeader->set_events(Gdk::BUTTON_PRESS_MASK);
     positionChangeColumnHeader->signal_button_press_event().connect( sigc::mem_fun(*this, &GsmApplication::onPositionChangeColumnHeaderClicked) );
 
-    add_window(*(rootWindow.get()));
+}
 
+void GsmApplication::on_activate() {
+    Glib::RefPtr<Gtk::CssProvider> cssProvider = Gtk::CssProvider::create();
+    cssProvider->load_from_resource("/org/gnome/gtkmm-testing/data/interface.css");
+
+    Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
+    builder->add_from_resource("/org/gnome/gtkmm-testing/data/interface.ui");
+
+    Glib::RefPtr<Gtk::Window> rootWindow = Glib::RefPtr<Gtk::Window>::cast_static(builder->get_object("window"));
+    Glib::RefPtr<Gdk::Screen> screen = rootWindow->get_screen();
+    Gtk::StyleContext::add_provider_for_screen(screen, cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
+
+    addColumnHeaderClickHandlers(builder);
+
+    add_window(*(rootWindow.get()));
     rootWindow->present();
 }
 

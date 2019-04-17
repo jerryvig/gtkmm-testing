@@ -8,6 +8,7 @@ class GsmApplication : public Gtk::Application {
 private:
     void load_settings();
     void load_resources();
+    void addColumnHeaderClickHandlers(Glib::RefPtr<Gtk::Builder>& builder);
 
 protected:
     GsmApplication();
