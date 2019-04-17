@@ -20,6 +20,8 @@ protected:
     virtual int on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line);
     virtual void on_startup();
     virtual bool onTickerColumnHeaderClicked(GdkEventButton* button_event);
+    virtual bool onShareCountColumnHeaderClicked(GdkEventButton* button_event);
+    virtual bool onShareBasisColumnHeaderClicked(GdkEventButton* button_event);
 };
 
 #endif /* _GSM_APPLICATION_H_ */

@@ -36,9 +36,17 @@ void GsmApplication::on_activate() {
     Glib::RefPtr<Gdk::Screen> screen = rootWindow->get_screen();
     Gtk::StyleContext::add_provider_for_screen(screen, cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
 
-    Glib::RefPtr<Gtk::Label> tickerColumnHeader = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("ticker_column_header"));
+    Glib::RefPtr<Gtk::EventBox> tickerColumnHeader = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("ticker_column_header"));
     tickerColumnHeader->set_events(Gdk::BUTTON_PRESS_MASK);
     tickerColumnHeader->signal_button_press_event().connect( sigc::mem_fun(*this, &GsmApplication::onTickerColumnHeaderClicked) );
+
+    Glib::RefPtr<Gtk::EventBox> shareCountColumnHeader = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("share_count_column_header"));
+    shareCountColumnHeader->set_events(Gdk::BUTTON_PRESS_MASK);
+    shareCountColumnHeader->signal_button_press_event().connect( sigc::mem_fun(*this, &GsmApplication::onShareCountColumnHeaderClicked) );
+
+    Glib::RefPtr<Gtk::EventBox> shareBasisColumnHeader = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("share_basis_column_header"));
+    shareBasisColumnHeader->set_events(Gdk::BUTTON_PRESS_MASK);
+    shareBasisColumnHeader->signal_button_press_event().connect( sigc::mem_fun(*this, &GsmApplication::onShareBasisColumnHeaderClicked) );
 
     add_window(*(rootWindow.get()));
 
@@ -68,6 +76,16 @@ void GsmApplication::load_resources() {
 }
 
 bool GsmApplication::onTickerColumnHeaderClicked(GdkEventButton* button_event) {
-    std::cout << "YOU CLICKED IT MOTHER FUCKER." << std::endl;
+    std::cout << "YOU CLICKED THE TICKER COLUMN HEADER." << std::endl;
+    return true;
+}
+
+bool GsmApplication::onShareCountColumnHeaderClicked(GdkEventButton* button_event) {
+    std::cout << "YOU CLICKED THE SHARE COUNT COLUMN HEADER." << std::endl;
+    return true;
+}
+
+bool GsmApplication::onShareBasisColumnHeaderClicked(GdkEventButton* button_event) {
+    std::cout << "YOU CLICKED THE SHARE BASIS COLUMN HEADER." << std::endl;
     return true;
 }
