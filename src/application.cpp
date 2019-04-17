@@ -6,6 +6,8 @@
 #include <signal.h>
 #include "application.hpp"
 
+#include <iostream>
+
 void GsmApplication::load_settings() {
 }
 

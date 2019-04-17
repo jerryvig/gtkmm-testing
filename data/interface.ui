@@ -7,7 +7,7 @@
             <object id="grid" class="GtkGrid">
                 <property name="visible">True</property>
                 <child>
-                    <object id="ticker_column_header" class="GtkLabel">
+                    <object id="ticker_column_header" class="GtkButton">
                         <property name="visible">True</property>
                         <property name="label">Ticker</property>
                         <property name="halign">GTK_ALIGN_CENTER</property>
