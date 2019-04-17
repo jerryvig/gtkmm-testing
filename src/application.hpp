@@ -2,6 +2,7 @@
 #ifndef _GSM_APPLICATION_H_
 #define _GSM_APPLICATION_H_
 
+#include <vector>
 #include <gtkmm.h>
 
 class GsmApplication : public Gtk::Application {
@@ -30,6 +31,7 @@ protected:
     virtual bool onPositionChangeColumnHeaderClicked(GdkEventButton* button_event);
 
     Gtk::Button nextRowButton;
+    std::vector<Gtk::Label*> rowLabels;
 };
 
 #endif /* _GSM_APPLICATION_H_ */

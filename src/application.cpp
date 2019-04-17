@@ -7,6 +7,7 @@
 #include "application.hpp"
 
 #include <iostream>
+#include <vector>
 
 void GsmApplication::load_settings() {
 }
@@ -81,6 +82,18 @@ void GsmApplication::on_activate() {
     nextRowButton.set_visible(true);
     nextRowButton.set_halign(Gtk::Align::ALIGN_CENTER);
     grid->attach(nextRowButton, 0, 1, 8, 1);
+
+    for (int i = 0; i < 7; ++i) {
+        Gtk::Label *nextLabel = new Gtk::Label("Label " + std::to_string(i));
+        nextLabel->set_visible(true);
+        rowLabels.push_back(nextLabel);
+    }
+
+    int j = 0;
+    for (auto label: rowLabels) {
+        grid->attach(*label, 3, 2 + j, 1, 1);
+        j++;
+    }
 }
 
 int GsmApplication::on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line) {
