@@ -7,8 +7,8 @@
                 <child>
                     <object id="ticker_column_label" class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="label">Ticker</property>
-                        <property name="halign">GTK_ALIGN_CENTER</property>
+                        <property name="label">A</property>
+                        <property name="halign">GTK_ALIGN_LEFT</property>
                     </object>
                 </child>
             </object>
@@ -24,8 +24,8 @@
                 <child>
                     <object id="share_count_column_label" class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="label"># of Shares</property>
-                        <property name="halign">GTK_ALIGN_CENTER</property>
+                        <property name="label">1200</property>
+                        <property name="halign">GTK_ALIGN_RIGHT</property>
                     </object>
                 </child>
             </object>
@@ -41,8 +41,8 @@
                 <child>
                     <object id="share_basis_column_label" class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="label">Share Basis</property>
-                        <property name="halign">GTK_ALIGN_CENTER</property>
+                        <property name="label">C</property>
+                        <property name="halign">GTK_ALIGN_LEFT</property>
                     </object>
                 </child>
             </object>
@@ -58,7 +58,7 @@
                 <child>
                     <object id="last_trade_column_label" class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="label">Last Trade</property>
+                        <property name="label">D</property>
                         <property name="halign">GTK_ALIGN_CENTER</property>
                     </object>
                 </child>
@@ -75,7 +75,7 @@
                 <child>
                     <object id="share_change_column_label" class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="label">Share Change</property>
+                        <property name="label">E</property>
                         <property name="halign">GTK_ALIGN_CENTER</property>
                     </object>
                 </child>
@@ -92,7 +92,7 @@
                 <child>
                     <object id="position_basis_column_label" class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="label">Position Basis</property>
+                        <property name="label">F</property>
                         <property name="halign">GTK_ALIGN_CENTER</property>
                     </object>
                 </child>
@@ -109,7 +109,7 @@
                 <child>
                     <object id="position_value_column_label" class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="label">Position Value</property>
+                        <property name="label">G</property>
                         <property name="halign">GTK_ALIGN_CENTER</property>
                     </object>
                 </child>
@@ -126,7 +126,7 @@
                 <child>
                     <object id="position_change_column_label" class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="label">Position Change</property>
+                        <property name="label">H</property>
                         <property name="halign">GTK_ALIGN_CENTER</property>
                     </object>
                 </child>
