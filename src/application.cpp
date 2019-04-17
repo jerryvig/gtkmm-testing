@@ -36,6 +36,10 @@ void GsmApplication::on_activate() {
     Glib::RefPtr<Gdk::Screen> screen = rootWindow->get_screen();
     Gtk::StyleContext::add_provider_for_screen(screen, cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
 
+    Glib::RefPtr<Gtk::Label> tickerColumnHeader = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("ticker_column_header"));
+    tickerColumnHeader->set_events(Gdk::BUTTON_PRESS_MASK);
+    tickerColumnHeader->signal_button_press_event().connect( sigc::mem_fun(*this, &GsmApplication::onTickerColumnHeaderClicked) );
+
     add_window(*(rootWindow.get()));
 
     rootWindow->present();
@@ -61,4 +65,9 @@ void GsmApplication::on_startup() {
 }
 
 void GsmApplication::load_resources() {
+}
+
+bool GsmApplication::onTickerColumnHeaderClicked(GdkEventButton* button_event) {
+    std::cout << "YOU CLICKED IT MOTHER FUCKER." << std::endl;
+    return true;
 }
