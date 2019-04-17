@@ -12,7 +12,8 @@ void GsmApplication::load_settings() {
 }
 
 GsmApplication::GsmApplication()
-    : Gtk::Application("com.mktneutral.gtkmm_testing", Gio::APPLICATION_HANDLES_COMMAND_LINE)
+    : Gtk::Application("com.mktneutral.gtkmm_testing", Gio::APPLICATION_HANDLES_COMMAND_LINE),
+    nextRowButton("Next Row Button")
 {
     Glib::set_application_name(_("gtkmm_testing"));
 }
@@ -70,10 +71,16 @@ void GsmApplication::on_activate() {
     Glib::RefPtr<Gdk::Screen> screen = rootWindow->get_screen();
     Gtk::StyleContext::add_provider_for_screen(screen, cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
 
+    Glib::RefPtr<Gtk::Grid> grid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("grid"));
+
     addColumnHeaderClickHandlers(builder);
 
     add_window(*(rootWindow.get()));
     rootWindow->present();
+
+    nextRowButton.set_visible(true);
+    nextRowButton.set_halign(Gtk::Align::ALIGN_CENTER);
+    grid->attach(nextRowButton, 0, 1, 8, 1);
 }
 
 int GsmApplication::on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line) {

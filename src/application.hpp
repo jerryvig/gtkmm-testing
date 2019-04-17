@@ -28,6 +28,8 @@ protected:
     virtual bool onPositionBasisColumnHeaderClicked(GdkEventButton* button_event);
     virtual bool onPositionValueColumnHeaderClicked(GdkEventButton* button_event);
     virtual bool onPositionChangeColumnHeaderClicked(GdkEventButton* button_event);
+
+    Gtk::Button nextRowButton;
 };
 
 #endif /* _GSM_APPLICATION_H_ */
