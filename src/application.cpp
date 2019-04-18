@@ -5,6 +5,7 @@
 #include <gtkmm/builder.h>
 #include <signal.h>
 #include "application.hpp"
+#include "positionrow.hpp"
 
 #include <iostream>
 #include <vector>
@@ -81,9 +82,8 @@ void GsmApplication::on_activate() {
     add_window(*(rootWindow.get()));
     rootWindow->present();
 
-    Glib::RefPtr<Gtk::Grid> positionRowGrid = Glib::RefPtr<Gtk::Grid>::cast_static(rowBuilder->get_object("position_row"));
-
-    grid->attach(*(positionRowGrid.get()), 0, 2, 8, 1);
+    PositionRow *positionRow = new PositionRow("AAPL", 100, 100.00);
+    grid->attach(*(positionRow->rowGrid.get()), 0, 2, 8, 1);
 }
 
 int GsmApplication::on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line) {

@@ -20,9 +20,10 @@ PositionRow::PositionRow(std::string ticker, int share_count, double share_basis
 
     Glib::RefPtr<Gtk::Label> shareBasisLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("share_basis_label"));
     shareBasisLabel->set_text("34.66");
+
+    Glib::RefPtr<Gtk::Label> lastTradeLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("last_trade_label"));
+    lastTradeLabel->set_text("99.99");
 }
 
 PositionRow::~PositionRow() {
-
 }
-
