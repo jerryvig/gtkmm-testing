@@ -21,6 +21,8 @@ public:
     double position_basis;
     double position_value;
     double position_change;
+
+    Glib::RefPtr<Gtk::Grid> rowGrid;
 };
 
 #endif /* _POSITION_ROW_H_ */
