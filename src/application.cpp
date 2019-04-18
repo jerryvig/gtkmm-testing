@@ -82,7 +82,7 @@ void GsmApplication::on_activate() {
     add_window(*(rootWindow.get()));
     rootWindow->present();
 
-    PositionRow *positionRow = new PositionRow("AAPL", 100, 100.00);
+    PositionRow *positionRow = new PositionRow("AAPL", 500, 100.00);
     grid->attach(*(positionRow->rowGrid.get()), 0, 2, 8, 1);
 
     PositionRow *positionRow1 = new PositionRow("GOOG", 100, 1000.00);

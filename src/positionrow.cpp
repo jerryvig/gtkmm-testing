@@ -13,13 +13,13 @@ PositionRow::PositionRow(std::string ticker, int share_count, double share_basis
     rowGrid = Glib::RefPtr<Gtk::Grid>::cast_static(rowBuilder->get_object("position_row"));
 
     Glib::RefPtr<Gtk::Label> tickerLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("ticker_label"));
-    tickerLabel->set_text("AAPL");
+    tickerLabel->set_text(m_ticker);
 
     Glib::RefPtr<Gtk::Label> shareCountLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("share_count_label"));
-    shareCountLabel->set_text("1200");
+    shareCountLabel->set_text(std::to_string(share_count));
 
     Glib::RefPtr<Gtk::Label> shareBasisLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("share_basis_label"));
-    shareBasisLabel->set_text("34.66");
+    shareBasisLabel->set_text(std::to_string(share_basis));
 
     Glib::RefPtr<Gtk::Label> lastTradeLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("last_trade_label"));
     lastTradeLabel->set_text("99.99");
