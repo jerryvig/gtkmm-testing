@@ -86,6 +86,7 @@ void GsmApplication::on_activate() {
 }
 
 void GsmApplication::addPositionRows(Glib::RefPtr<Gtk::Grid>& grid) {
+    // As you add these rows you should probably increment their IDs so they won't have duplicate ids.
     PositionRow *positionRow = new PositionRow("AAPL", 500, 100.00);
     grid->attach(*(positionRow->rowGrid.get()), 0, 2, 8, 1);
 
