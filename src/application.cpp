@@ -68,8 +68,8 @@ void GsmApplication::on_activate() {
     Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
     builder->add_from_resource("/org/gnome/gtkmm-testing/data/interface.ui");
 
-    Glib::RefPtr<Gtk::Builder> rowBuilder = Gtk::Builder::create();
-    rowBuilder->add_from_resource("/org/gnome/gtkmm-testing/data/position_row.ui");
+    Glib::RefPtr<Gtk::Builder> addRowBuilder = Gtk::Builder::create();
+    addRowBuilder->add_from_resource("/org/gnome/gtkmm-testing/data/add_button_row.ui");
 
     Glib::RefPtr<Gtk::Window> rootWindow = Glib::RefPtr<Gtk::Window>::cast_static(builder->get_object("window"));
     Glib::RefPtr<Gdk::Screen> screen = rootWindow->get_screen();
@@ -77,9 +77,14 @@ void GsmApplication::on_activate() {
 
     Glib::RefPtr<Gtk::Grid> grid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("grid"));
 
+    Glib::RefPtr<Gtk::Grid> addButtonRow = Glib::RefPtr<Gtk::Grid>::cast_static(addRowBuilder->get_object("add_button_row"));
+    addButtonRow->set_halign(Gtk::Align::ALIGN_CENTER);
+
     addColumnHeaderClickHandlers(builder);
 
     addPositionRows(grid);
+
+    grid->attach(*(addButtonRow.get()), 0, 4, 8, 1);
 
     add_window(*(rootWindow.get()));
     rootWindow->present();
