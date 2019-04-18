@@ -19,6 +19,7 @@ public:
 
 protected:
     virtual void on_activate();
+    virtual void addPositionRows(Glib::RefPtr<Gtk::Grid>& grid);
     virtual int on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line);
     virtual void on_startup();
     virtual bool onTickerColumnHeaderClicked(GdkEventButton* button_event);
