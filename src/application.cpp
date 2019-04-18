@@ -84,6 +84,9 @@ void GsmApplication::on_activate() {
 
     PositionRow *positionRow = new PositionRow("AAPL", 100, 100.00);
     grid->attach(*(positionRow->rowGrid.get()), 0, 2, 8, 1);
+
+    PositionRow *positionRow1 = new PositionRow("GOOG", 100, 1000.00);
+    grid->attach(*(positionRow1->rowGrid.get()), 0, 3, 8, 1);
 }
 
 int GsmApplication::on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line) {
