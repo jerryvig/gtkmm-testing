@@ -80,6 +80,9 @@ void GsmApplication::on_activate() {
     Glib::RefPtr<Gtk::Grid> addButtonRow = Glib::RefPtr<Gtk::Grid>::cast_static(addRowBuilder->get_object("add_button_row"));
     addButtonRow->set_halign(Gtk::Align::ALIGN_CENTER);
 
+    Glib::RefPtr<Gtk::Button> addPositionRowButton = Glib::RefPtr<Gtk::Button>::cast_static(addRowBuilder->get_object("add_position_row_button"));
+    // Add the click handler for this addPositionRowButton.
+
     addColumnHeaderClickHandlers(builder);
 
     addPositionRows(grid);
