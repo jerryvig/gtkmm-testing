@@ -8,6 +8,7 @@
 #include "positionrow.hpp"
 
 #include <iostream>
+#include <memory>
 #include <vector>
 
 void GsmApplication::load_settings() {
@@ -91,11 +92,11 @@ static int positionRowIndex = 0;
 
 void GsmApplication::addPositionRows(Glib::RefPtr<Gtk::Grid>& grid) {
     // As you add these rows you should probably increment their IDs so they won't have duplicate ids.
-    PositionRow *positionRow = new PositionRow("AAPL", 500, 100.00);
+    std::shared_ptr<PositionRow> positionRow = std::make_shared<PositionRow>("AAPL", 500, 100.00);
     grid->attach(*(positionRow->rowGrid.get()), 0, positionRowIndex, 8, 1);
     positionRowIndex++;
 
-    PositionRow *positionRow1 = new PositionRow("GOOG", 100, 1000.00);
+    std::shared_ptr<PositionRow> positionRow1 = std::make_shared<PositionRow>("GOOG", 500, 100.00);
     grid->attach(*(positionRow1->rowGrid.get()), 0, positionRowIndex, 8, 1);
     positionRowIndex++;
 }
