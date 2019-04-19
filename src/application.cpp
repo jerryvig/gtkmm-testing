@@ -75,7 +75,7 @@ void GsmApplication::on_activate() {
     Glib::RefPtr<Gdk::Screen> screen = rootWindow->get_screen();
     Gtk::StyleContext::add_provider_for_screen(screen, cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
 
-    Glib::RefPtr<Gtk::Grid> grid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("grid"));
+    mLayoutGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("grid"));
 
     Glib::RefPtr<Gtk::Grid> addButtonRow = Glib::RefPtr<Gtk::Grid>::cast_static(addRowBuilder->get_object("add_button_row"));
     addButtonRow->set_halign(Gtk::Align::ALIGN_CENTER);
@@ -85,9 +85,9 @@ void GsmApplication::on_activate() {
 
     addColumnHeaderClickHandlers(builder);
 
-    addPositionRows(grid);
+    addPositionRows(mLayoutGrid);
 
-    grid->attach(*(addButtonRow.get()), 0, 4, 8, 1);
+    mLayoutGrid->attach(*(addButtonRow.get()), 0, 4, 8, 1);
 
     add_window(*(rootWindow.get()));
     rootWindow->present();
@@ -126,6 +126,7 @@ void GsmApplication::load_resources() {
 
 void GsmApplication::onAddButtonClicked() {
     std::cout << "You clicked the add button" << std::endl;
+    addPositionRows(mLayoutGrid);
 }
 
 bool GsmApplication::onTickerColumnHeaderClicked(GdkEventButton* button_event) {
