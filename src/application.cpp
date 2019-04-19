@@ -81,7 +81,7 @@ void GsmApplication::on_activate() {
     addButtonRow->set_halign(Gtk::Align::ALIGN_CENTER);
 
     Glib::RefPtr<Gtk::Button> addPositionRowButton = Glib::RefPtr<Gtk::Button>::cast_static(addRowBuilder->get_object("add_position_row_button"));
-    // Add the click handler for this addPositionRowButton.
+    addPositionRowButton->signal_clicked().connect( sigc::mem_fun(*this, &GsmApplication::onAddButtonClicked) );
 
     addColumnHeaderClickHandlers(builder);
 
@@ -122,6 +122,10 @@ void GsmApplication::on_startup() {
 }
 
 void GsmApplication::load_resources() {
+}
+
+void GsmApplication::onAddButtonClicked() {
+    std::cout << "You clicked the add button" << std::endl;
 }
 
 bool GsmApplication::onTickerColumnHeaderClicked(GdkEventButton* button_event) {
