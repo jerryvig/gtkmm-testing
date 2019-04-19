@@ -77,17 +77,17 @@ void GsmApplication::on_activate() {
 
     mLayoutGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("grid"));
 
-    Glib::RefPtr<Gtk::Grid> addButtonRow = Glib::RefPtr<Gtk::Grid>::cast_static(addRowBuilder->get_object("add_button_row"));
-    addButtonRow->set_halign(Gtk::Align::ALIGN_CENTER);
+    // Glib::RefPtr<Gtk::Grid> addButtonRow = Glib::RefPtr<Gtk::Grid>::cast_static(addRowBuilder->get_object("add_button_row"));
+    // addButtonRow->set_halign(Gtk::Align::ALIGN_CENTER);
 
-    Glib::RefPtr<Gtk::Button> addPositionRowButton = Glib::RefPtr<Gtk::Button>::cast_static(addRowBuilder->get_object("add_position_row_button"));
-    addPositionRowButton->signal_clicked().connect( sigc::mem_fun(*this, &GsmApplication::onAddButtonClicked) );
+    //Glib::RefPtr<Gtk::Button> addPositionRowButton = Glib::RefPtr<Gtk::Button>::cast_static(addRowBuilder->get_object("add_position_row_button"));
+    //addPositionRowButton->signal_clicked().connect( sigc::mem_fun(*this, &GsmApplication::onAddButtonClicked) );
 
     addColumnHeaderClickHandlers(builder);
 
-    addPositionRows(mLayoutGrid);
+    //addPositionRows(mLayoutGrid);
 
-    mLayoutGrid->attach(*(addButtonRow.get()), 0, 4, 8, 1);
+    //mLayoutGrid->attach(*(addButtonRow.get()), 0, 4, 8, 1);
 
     add_window(*(rootWindow.get()));
     rootWindow->present();
