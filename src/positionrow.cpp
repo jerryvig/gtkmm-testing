@@ -97,16 +97,14 @@ bool PositionRow::onDeleteBoxClicked(GdkEventButton* button_event) {
     return true;
 }
 
-static std::shared_ptr<Gtk::Entry> tickerEntry;
-
 bool PositionRow::onTickerBoxClicked(GdkEventButton* button_event) {
     std::cout << "you clicked the ticker event box. need to add an input inside of the event box" << std::endl;
 
-    // auto tickerEventBox = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("ticker_event_box"));
-    tickerEntry = std::make_shared<Gtk::Entry>();
-    tickerEntry->set_max_length(10);
-    tickerEntry->set_text("hola");
     tickerEventBox->remove();
+    tickerEntry->set_visibility(true);
+
     tickerEventBox->add(*tickerEntry);
+    tickerEntry->show();
+
     return true;
 }
