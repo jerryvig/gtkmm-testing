@@ -8,6 +8,7 @@ private:
 
 protected:
     virtual bool onDeleteBoxClicked(GdkEventButton* button_event);
+    virtual bool onTickerBoxClicked(GdkEventButton* button_event);
 
 public:
     PositionRow();

@@ -63,10 +63,10 @@ void GsmApplication::addColumnHeaderClickHandlers(Glib::RefPtr<Gtk::Builder>& bu
 }
 
 void GsmApplication::on_activate() {
-    Glib::RefPtr<Gtk::CssProvider> cssProvider = Gtk::CssProvider::create();
+    auto cssProvider = Gtk::CssProvider::create();
     cssProvider->load_from_resource("/org/gnome/gtkmm-testing/data/interface.css");
 
-    Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
+    auto builder = Gtk::Builder::create();
     builder->add_from_resource("/org/gnome/gtkmm-testing/data/interface.ui");
 
     Glib::RefPtr<Gtk::Window> rootWindow = Glib::RefPtr<Gtk::Window>::cast_static(builder->get_object("window"));
@@ -129,7 +129,7 @@ void GsmApplication::load_resources() {
 
 void GsmApplication::onAddButtonClicked() {
     std::cout << "You clicked the add button" << std::endl;
-    addPositionRows(rowsContainerGrid);
+    addNewPositionRow(rowsContainerGrid);
 }
 
 bool GsmApplication::onTickerColumnHeaderClicked(GdkEventButton* button_event) {

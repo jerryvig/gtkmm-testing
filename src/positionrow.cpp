@@ -36,6 +36,10 @@ PositionRow::PositionRow() {
     auto deleteEventBox = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("delete_event_box"));
     deleteEventBox->set_events(Gdk::BUTTON_PRESS_MASK);
     deleteEventBox->signal_button_press_event().connect( sigc::mem_fun(*this, &PositionRow::onDeleteBoxClicked) );
+
+    auto tickerEventBox = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("ticker_event_box"));
+    tickerEventBox->set_events(Gdk::BUTTON_PRESS_MASK);
+    tickerEventBox->signal_button_press_event().connect( sigc::mem_fun(*this, &PositionRow::onTickerBoxClicked) );
 }
 
 PositionRow::PositionRow(std::string ticker, int share_count, double share_basis) : m_ticker(ticker),
@@ -77,5 +81,10 @@ PositionRow::~PositionRow() {
 
 bool PositionRow::onDeleteBoxClicked(GdkEventButton* button_event) {
     std::cout << "you clicked the delete event box" << std::endl;
+    return true;
+}
+
+bool PositionRow::onTickerBoxClicked(GdkEventButton* button_event) {
+    std::cout << "you clicked the ticker event box. need to add an input inside of the event box" << std::endl;
     return true;
 }
