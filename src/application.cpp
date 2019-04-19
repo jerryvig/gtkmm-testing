@@ -79,15 +79,10 @@ void GsmApplication::on_activate() {
 
     Glib::RefPtr<Gtk::Grid> rowsContainerGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("rows_container"));
 
-    // Glib::RefPtr<Gtk::Grid> addButtonRow = Glib::RefPtr<Gtk::Grid>::cast_static(addRowBuilder->get_object("add_button_row"));
-    // addButtonRow->set_halign(Gtk::Align::ALIGN_CENTER);
-
     Glib::RefPtr<Gtk::Button> addPositionRowButton = Glib::RefPtr<Gtk::Button>::cast_static(builder->get_object("add_row_button"));
     addPositionRowButton->signal_clicked().connect( sigc::mem_fun(*this, &GsmApplication::onAddButtonClicked) );
 
     addColumnHeaderClickHandlers(builder);
-
-    addPositionRows(rowsContainerGrid);
 
     add_window(*(rootWindow.get()));
     rootWindow->present();
