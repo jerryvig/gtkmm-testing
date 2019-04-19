@@ -47,7 +47,7 @@ PositionRow::PositionRow(int rowIndex) {
     // Make entry objects here.
     tickerEntry = std::make_shared<Gtk::Entry>();
     tickerEntry->set_max_width_chars(5);
-    tickerEntry->set_text("aapl");
+    tickerEntry->set_text("");
 }
 
 PositionRow::PositionRow(std::string ticker, int share_count, double share_basis, double last_trade, double share_change,
@@ -105,8 +105,11 @@ bool PositionRow::onTickerBoxClicked(GdkEventButton* button_event) {
     tickerEventBox->remove();
     tickerEntry->set_visibility(true);
 
+    tickerEntry->set_width_chars(10);
     tickerEventBox->add(*tickerEntry);
     tickerEntry->show();
+
+    std::cout << "allocated width = " << tickerEventBox->get_allocated_width() << std::endl;
 
     return true;
 }
