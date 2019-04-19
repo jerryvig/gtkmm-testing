@@ -13,7 +13,8 @@ protected:
 
 public:
     PositionRow(int rowIndex);
-    PositionRow(std::string ticker, int share_count, double share_basis);
+    PositionRow(std::string ticker, int share_count, double share_basis, double last_trade, double share_change,
+                double position_basis, double position_value, double position_change);
     ~PositionRow();
 
     std::string m_ticker;

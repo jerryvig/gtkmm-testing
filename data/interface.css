@@ -10,6 +10,10 @@ label {
     min-width: 110px;
 }
 
+eventbox {
+    min-width: 110px;
+}
+
 grid {
     border: 0;
     padding: 0;

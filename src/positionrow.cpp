@@ -37,14 +37,23 @@ PositionRow::PositionRow(int rowIndex) {
     deleteEventBox->set_events(Gdk::BUTTON_PRESS_MASK);
     deleteEventBox->signal_button_press_event().connect( sigc::mem_fun(*this, &PositionRow::onDeleteBoxClicked) );
 
+    //Setup the ticker eventbox click handler.
     tickerEventBox = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("ticker_event_box"));
+    //tickerEventBox = builder->get_object("ticker_event_box");
     tickerEventBox->set_events(Gdk::BUTTON_PRESS_MASK);
     tickerEventBox->signal_button_press_event().connect( sigc::mem_fun(*this, &PositionRow::onTickerBoxClicked) );
 }
 
-PositionRow::PositionRow(std::string ticker, int share_count, double share_basis) : m_ticker(ticker),
+PositionRow::PositionRow(std::string ticker, int share_count, double share_basis, double last_trade, double share_change,
+        double position_basis, double position_value, double position_change) :
+    m_ticker(ticker),
     m_share_count(share_count),
-    m_share_basis(share_basis)
+    m_share_basis(share_basis),
+    m_last_trade(last_trade),
+    m_share_change(share_change),
+    m_position_basis(position_basis),
+    m_position_value(position_value),
+    m_position_change(position_change)
 {
     Glib::RefPtr<Gtk::Builder> rowBuilder = Gtk::Builder::create();
     rowBuilder->add_from_resource("/org/gnome/gtkmm-testing/data/position_row.ui");
@@ -61,19 +70,19 @@ PositionRow::PositionRow(std::string ticker, int share_count, double share_basis
     shareBasisLabel->set_text(std::to_string(share_basis));
 
     Glib::RefPtr<Gtk::Label> lastTradeLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("last_trade_label"));
-    lastTradeLabel->set_text("99.99");
+    lastTradeLabel->set_text(std::to_string(last_trade));
 
     Glib::RefPtr<Gtk::Label> shareChangeLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("share_change_label"));
-    shareChangeLabel->set_text("1.12%");
+    shareChangeLabel->set_text(std::to_string(share_change));
 
     Glib::RefPtr<Gtk::Label> positionBasisLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("position_basis_label"));
-    positionBasisLabel->set_text("89.04");
+    positionBasisLabel->set_text(std::to_string(position_basis));
 
     Glib::RefPtr<Gtk::Label> positionValueLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("position_value_label"));
-    positionValueLabel->set_text("12,680.23");
+    positionValueLabel->set_text(std::to_string(position_value));
 
     Glib::RefPtr<Gtk::Label> positionChangeLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("position_change_label"));
-    positionChangeLabel->set_text("+3,810.45");
+    positionChangeLabel->set_text(std::to_string(position_change));
 }
 
 PositionRow::~PositionRow() {
@@ -84,10 +93,16 @@ bool PositionRow::onDeleteBoxClicked(GdkEventButton* button_event) {
     return true;
 }
 
+static std::shared_ptr<Gtk::Entry> tickerEntry;
+
 bool PositionRow::onTickerBoxClicked(GdkEventButton* button_event) {
     std::cout << "you clicked the ticker event box. need to add an input inside of the event box" << std::endl;
 
     // auto tickerEventBox = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("ticker_event_box"));
+    tickerEntry = std::make_shared<Gtk::Entry>();
+    tickerEntry->set_max_length(10);
+    tickerEntry->set_text("hola");
     tickerEventBox->remove();
+    tickerEventBox->add(*tickerEntry);
     return true;
 }

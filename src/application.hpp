@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <gtkmm.h>
+#include "positionrow.hpp"
 
 class GsmApplication : public Gtk::Application {
 private:
@@ -11,6 +12,7 @@ private:
     void load_resources();
     void addColumnHeaderClickHandlers(Glib::RefPtr<Gtk::Builder>& builder);
 
+    std::vector<std::shared_ptr<PositionRow>> positionRowList;
     int positionRowIndex;
 
 protected:

@@ -88,6 +88,8 @@ void GsmApplication::on_activate() {
 
 void GsmApplication::addNewPositionRow(Glib::RefPtr<Gtk::Grid>& grid) {
     auto positionRow = std::make_shared<PositionRow>(positionRowIndex);
+    positionRowList.push_back(positionRow);
+
     grid->attach(*(positionRow->rowGrid.get()), 0, positionRowIndex, 9, 1);
     positionRowIndex++;
 }
@@ -96,13 +98,13 @@ void GsmApplication::addPositionRows(Glib::RefPtr<Gtk::Grid>& grid) {
     // As you add these rows you should probably increment their IDs so they won't have duplicate ids.
     // We could maybe use this as way to load the rows that have been saved. Those would be positions already
     // saved in the application.
-    auto positionRow = std::make_shared<PositionRow>("AAPL", 500, 100.00);
+    /* auto positionRow = std::make_shared<PositionRow>("AAPL", 500, 100.00);
     grid->attach(*(positionRow->rowGrid.get()), 0, positionRowIndex, 9, 1);
     positionRowIndex++;
 
     auto positionRow1 = std::make_shared<PositionRow>("GOOG", 500, 100.00);
     grid->attach(*(positionRow1->rowGrid.get()), 0, positionRowIndex, 9, 1);
-    positionRowIndex++;
+    positionRowIndex++; */
 }
 
 int GsmApplication::on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line) {
