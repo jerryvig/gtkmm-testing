@@ -79,11 +79,16 @@ void GsmApplication::on_activate() {
 
     Glib::RefPtr<Gtk::Button> addPositionRowButton = Glib::RefPtr<Gtk::Button>::cast_static(builder->get_object("add_row_button"));
     addPositionRowButton->signal_clicked().connect( sigc::mem_fun(*this, &GsmApplication::onAddButtonClicked) );
+    auto addButtonRow = Glib::RefPtr<Gtk::Button>::cast_static(builder->get_object("add_button_row"));
+    addButtonRow->set_name("add-button-row");
 
     addColumnHeaderClickHandlers(builder);
 
     add_window(*(rootWindow.get()));
     rootWindow->present();
+
+    std::cout << "grid->get_width() = " << layoutGrid->get_width() << std::endl;
+    addButtonRow->set_size_request(layoutGrid->get_width(), 1);
 }
 
 void GsmApplication::addNewPositionRow(Glib::RefPtr<Gtk::Grid>& grid) {

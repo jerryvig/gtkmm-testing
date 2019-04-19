@@ -10,9 +10,11 @@ PositionRow::PositionRow(int rowIndex) {
 
     auto tickerLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("ticker_label"));
     tickerLabel->set_text("(click to enter ticker)");
+    tickerLabel->set_ellipsize(Pango::EllipsizeMode::ELLIPSIZE_END);
 
     auto shareCountLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("share_count_label"));
     shareCountLabel->set_text("");
+    shareCountLabel->set_ellipsize(Pango::EllipsizeMode::ELLIPSIZE_END);
 
     auto shareBasisLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("share_basis_label"));
     shareBasisLabel->set_text("");
