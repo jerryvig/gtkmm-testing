@@ -6,6 +6,7 @@
 class PositionRow {
 private:
     Glib::RefPtr<Gtk::EventBox> tickerEventBox;
+    std::shared_ptr<Gtk::Entry> tickerEntry;
 
 protected:
     virtual bool onDeleteBoxClicked(GdkEventButton* button_event);

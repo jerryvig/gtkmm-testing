@@ -39,9 +39,13 @@ PositionRow::PositionRow(int rowIndex) {
 
     //Setup the ticker eventbox click handler.
     tickerEventBox = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("ticker_event_box"));
-    //tickerEventBox = builder->get_object("ticker_event_box");
     tickerEventBox->set_events(Gdk::BUTTON_PRESS_MASK);
     tickerEventBox->signal_button_press_event().connect( sigc::mem_fun(*this, &PositionRow::onTickerBoxClicked) );
+
+    // Make entry objects here.
+    tickerEntry = std::make_shared<Gtk::Entry>();
+    tickerEntry->set_max_length(4);
+    tickerEntry->set_text("aapl");
 }
 
 PositionRow::PositionRow(std::string ticker, int share_count, double share_basis, double last_trade, double share_change,
