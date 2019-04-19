@@ -68,8 +68,8 @@ void GsmApplication::on_activate() {
     Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
     builder->add_from_resource("/org/gnome/gtkmm-testing/data/interface.ui");
 
-    Glib::RefPtr<Gtk::Builder> addRowBuilder = Gtk::Builder::create();
-    addRowBuilder->add_from_resource("/org/gnome/gtkmm-testing/data/add_button_row.ui");
+    //Glib::RefPtr<Gtk::Builder> addRowBuilder = Gtk::Builder::create();
+    //addRowBuilder->add_from_resource("/org/gnome/gtkmm-testing/data/add_button_row.ui");
 
     Glib::RefPtr<Gtk::Window> rootWindow = Glib::RefPtr<Gtk::Window>::cast_static(builder->get_object("window"));
     Glib::RefPtr<Gdk::Screen> screen = rootWindow->get_screen();
@@ -77,17 +77,17 @@ void GsmApplication::on_activate() {
 
     mLayoutGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("grid"));
 
+    Glib::RefPtr<Gtk::Grid> rowsContainerGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("rows_container"));
+
     // Glib::RefPtr<Gtk::Grid> addButtonRow = Glib::RefPtr<Gtk::Grid>::cast_static(addRowBuilder->get_object("add_button_row"));
     // addButtonRow->set_halign(Gtk::Align::ALIGN_CENTER);
 
-    //Glib::RefPtr<Gtk::Button> addPositionRowButton = Glib::RefPtr<Gtk::Button>::cast_static(addRowBuilder->get_object("add_position_row_button"));
-    //addPositionRowButton->signal_clicked().connect( sigc::mem_fun(*this, &GsmApplication::onAddButtonClicked) );
+    Glib::RefPtr<Gtk::Button> addPositionRowButton = Glib::RefPtr<Gtk::Button>::cast_static(builder->get_object("add_row_button"));
+    addPositionRowButton->signal_clicked().connect( sigc::mem_fun(*this, &GsmApplication::onAddButtonClicked) );
 
     addColumnHeaderClickHandlers(builder);
 
-    //addPositionRows(mLayoutGrid);
-
-    //mLayoutGrid->attach(*(addButtonRow.get()), 0, 4, 8, 1);
+    addPositionRows(rowsContainerGrid);
 
     add_window(*(rootWindow.get()));
     rootWindow->present();
@@ -126,7 +126,6 @@ void GsmApplication::load_resources() {
 
 void GsmApplication::onAddButtonClicked() {
     std::cout << "You clicked the add button" << std::endl;
-    addPositionRows(mLayoutGrid);
 }
 
 bool GsmApplication::onTickerColumnHeaderClicked(GdkEventButton* button_event) {

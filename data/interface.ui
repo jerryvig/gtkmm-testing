@@ -158,7 +158,7 @@
                         <property name="visible">True</property>
                         <property name="halign">GTK_ALIGN_CENTER</property>
                         <child>
-                            <object id="add_position_row_button" class="GtkButton">
+                            <object id="add_row_button" class="GtkButton">
                                 <property name="visible">True</property>
                                 <property name="label">Add Row</property>
                                 <property name="halign">GTK_ALIGN_CENTER</property>
