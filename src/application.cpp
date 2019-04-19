@@ -124,6 +124,7 @@ void GsmApplication::load_resources() {
 
 void GsmApplication::onAddButtonClicked() {
     std::cout << "You clicked the add button" << std::endl;
+    addPositionRows(rowsContainerGrid);
 }
 
 bool GsmApplication::onTickerColumnHeaderClicked(GdkEventButton* button_event) {
