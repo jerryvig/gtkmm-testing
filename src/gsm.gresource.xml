@@ -3,7 +3,6 @@
     <gresource prefix="/org/gnome/gtkmm-testing">
         <file preprocess="xml-stripblanks">data/interface.ui</file>
         <file preprocess="xml-stripblanks">data/position_row.ui</file>
-        <file preprocess="xml-stripblanks">data/add_button_row.ui</file>
         <file>data/interface.css</file>
     </gresource>
 </gresources>
