@@ -68,9 +68,6 @@ void GsmApplication::on_activate() {
     Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
     builder->add_from_resource("/org/gnome/gtkmm-testing/data/interface.ui");
 
-    //Glib::RefPtr<Gtk::Builder> addRowBuilder = Gtk::Builder::create();
-    //addRowBuilder->add_from_resource("/org/gnome/gtkmm-testing/data/add_button_row.ui");
-
     Glib::RefPtr<Gtk::Window> rootWindow = Glib::RefPtr<Gtk::Window>::cast_static(builder->get_object("window"));
     Glib::RefPtr<Gdk::Screen> screen = rootWindow->get_screen();
     Gtk::StyleContext::add_provider_for_screen(screen, cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
@@ -91,10 +88,10 @@ void GsmApplication::on_activate() {
 void GsmApplication::addPositionRows(Glib::RefPtr<Gtk::Grid>& grid) {
     // As you add these rows you should probably increment their IDs so they won't have duplicate ids.
     PositionRow *positionRow = new PositionRow("AAPL", 500, 100.00);
-    grid->attach(*(positionRow->rowGrid.get()), 0, 2, 8, 1);
+    //grid->attach(*(positionRow->rowGrid.get()), 0, 2, 8, 1);
 
-    PositionRow *positionRow1 = new PositionRow("GOOG", 100, 1000.00);
-    grid->attach(*(positionRow1->rowGrid.get()), 0, 3, 8, 1);
+    //PositionRow *positionRow1 = new PositionRow("GOOG", 100, 1000.00);
+    //grid->attach(*(positionRow1->rowGrid.get()), 0, 3, 8, 1);
 }
 
 int GsmApplication::on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line) {
