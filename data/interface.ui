@@ -7,6 +7,23 @@
             <object id="grid" class="GtkGrid">
                 <property name="visible">True</property>
                 <child>
+                    <object id="delete_column_header" class="GtkEventBox">
+                        <property name="visible">True</property>
+                        <child>
+                            <object id="delete_column_label" class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="label">Delete Row</property>
+                                <property name="halign">GTK_ALIGN_CENTER</property>
+                            </object>
+                        </child>
+                    </object>
+                    <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
+                        <property name="width">1</property>
+                    </packing>
+                </child>
+                <child>
                     <object id="ticker_column_header" class="GtkEventBox">
                         <property name="visible">True</property>
                         <child>
@@ -18,7 +35,7 @@
                         </child>
                     </object>
                     <packing>
-                        <property name="left-attach">0</property>
+                        <property name="left-attach">1</property>
                         <property name="top-attach">0</property>
                         <property name="width">1</property>
                     </packing>

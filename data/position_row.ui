@@ -2,6 +2,23 @@
     <object id="position_row" class="GtkGrid">
         <property name="visible">True</property>
         <child>
+            <object id="delete_event_box" class="GtkEventBox">
+                <property name="visible">True</property>
+                <child>
+                    <object id="delete_label" class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label">X</property>
+                        <property name="halign">GTK_ALIGN_CENTER</property>
+                    </object>
+                </child>
+            </object>
+            <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">0</property>
+                <property name="width">1</property>
+            </packing>
+        </child>
+        <child>
             <object id="ticker_event_box" class="GtkEventBox">
                 <property name="visible">True</property>
                 <child>
