@@ -9,7 +9,7 @@ PositionRow::PositionRow(int rowIndex) {
     rowGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("position_row"));
 
     auto tickerLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("ticker_label"));
-    tickerLabel->set_text("(Enter ticker)");
+    tickerLabel->set_text("(click to enter ticker)");
 
     auto shareCountLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("share_count_label"));
     shareCountLabel->set_text("");
@@ -44,7 +44,7 @@ PositionRow::PositionRow(int rowIndex) {
 
     // Make entry objects here.
     tickerEntry = std::make_shared<Gtk::Entry>();
-    tickerEntry->set_max_length(4);
+    tickerEntry->set_max_width_chars(5);
     tickerEntry->set_text("aapl");
 }
 

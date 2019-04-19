@@ -7,14 +7,19 @@ label {
     color: black;
     font-weight: bold;
     padding: 8px;
-    min-width: 110px;
+    min-width: 130px;
 }
 
 eventbox {
-    min-width: 110px;
+    min-width: 135px;
+    max-width: 135px;
 }
 
 grid {
     border: 0;
     padding: 0;
+}
+
+entry {
+    max-width: 50px;
 }
