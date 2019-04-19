@@ -72,12 +72,14 @@ void GsmApplication::on_activate() {
     Glib::RefPtr<Gdk::Screen> screen = rootWindow->get_screen();
     Gtk::StyleContext::add_provider_for_screen(screen, cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
 
-    mLayoutGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("grid"));
+    Glib::RefPtr<Gtk::Grid> layoutGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("grid"));
 
-    Glib::RefPtr<Gtk::Grid> rowsContainerGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("rows_container"));
+    rowsContainerGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("rows_container"));
 
     Glib::RefPtr<Gtk::Button> addPositionRowButton = Glib::RefPtr<Gtk::Button>::cast_static(builder->get_object("add_row_button"));
     addPositionRowButton->signal_clicked().connect( sigc::mem_fun(*this, &GsmApplication::onAddButtonClicked) );
+
+    addPositionRows(rowsContainerGrid);
 
     addColumnHeaderClickHandlers(builder);
 
@@ -85,13 +87,17 @@ void GsmApplication::on_activate() {
     rootWindow->present();
 }
 
+static int positionRowIndex = 0;
+
 void GsmApplication::addPositionRows(Glib::RefPtr<Gtk::Grid>& grid) {
     // As you add these rows you should probably increment their IDs so they won't have duplicate ids.
     PositionRow *positionRow = new PositionRow("AAPL", 500, 100.00);
-    //grid->attach(*(positionRow->rowGrid.get()), 0, 2, 8, 1);
+    grid->attach(*(positionRow->rowGrid.get()), 0, positionRowIndex, 8, 1);
+    positionRowIndex++;
 
-    //PositionRow *positionRow1 = new PositionRow("GOOG", 100, 1000.00);
-    //grid->attach(*(positionRow1->rowGrid.get()), 0, 3, 8, 1);
+    PositionRow *positionRow1 = new PositionRow("GOOG", 100, 1000.00);
+    grid->attach(*(positionRow1->rowGrid.get()), 0, positionRowIndex, 8, 1);
+    positionRowIndex++;
 }
 
 int GsmApplication::on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line) {

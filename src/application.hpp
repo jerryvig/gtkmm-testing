@@ -33,7 +33,7 @@ protected:
     virtual bool onPositionChangeColumnHeaderClicked(GdkEventButton* button_event);
 
     std::vector<Gtk::Label*> rowLabels;
-    Glib::RefPtr<Gtk::Grid> mLayoutGrid;
+    Glib::RefPtr<Gtk::Grid> rowsContainerGrid;
 };
 
 #endif /* _GSM_APPLICATION_H_ */
