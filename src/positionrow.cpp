@@ -2,14 +2,14 @@
 
 #include <iostream>
 
-PositionRow::PositionRow() {
-    auto builder = Gtk::Builder::create();
+PositionRow::PositionRow(int rowIndex) {
+    builder = Gtk::Builder::create();
     builder->add_from_resource("/org/gnome/gtkmm-testing/data/position_row.ui");
 
     rowGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("position_row"));
 
     auto tickerLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("ticker_label"));
-    tickerLabel->set_text("");
+    tickerLabel->set_text("(Enter ticker)");
 
     auto shareCountLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("share_count_label"));
     shareCountLabel->set_text("");
@@ -33,11 +33,11 @@ PositionRow::PositionRow() {
     positionChangeLabel->set_text("");
 
     //Setup the row delete handler.
-    auto deleteEventBox = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("delete_event_box"));
+    auto deleteEventBox = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("delete_event_box"));
     deleteEventBox->set_events(Gdk::BUTTON_PRESS_MASK);
     deleteEventBox->signal_button_press_event().connect( sigc::mem_fun(*this, &PositionRow::onDeleteBoxClicked) );
 
-    auto tickerEventBox = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("ticker_event_box"));
+    tickerEventBox = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("ticker_event_box"));
     tickerEventBox->set_events(Gdk::BUTTON_PRESS_MASK);
     tickerEventBox->signal_button_press_event().connect( sigc::mem_fun(*this, &PositionRow::onTickerBoxClicked) );
 }
@@ -86,5 +86,8 @@ bool PositionRow::onDeleteBoxClicked(GdkEventButton* button_event) {
 
 bool PositionRow::onTickerBoxClicked(GdkEventButton* button_event) {
     std::cout << "you clicked the ticker event box. need to add an input inside of the event box" << std::endl;
+
+    // auto tickerEventBox = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("ticker_event_box"));
+    tickerEventBox->remove();
     return true;
 }

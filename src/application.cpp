@@ -87,7 +87,7 @@ void GsmApplication::on_activate() {
 }
 
 void GsmApplication::addNewPositionRow(Glib::RefPtr<Gtk::Grid>& grid) {
-    auto positionRow = std::make_shared<PositionRow>();
+    auto positionRow = std::make_shared<PositionRow>(positionRowIndex);
     grid->attach(*(positionRow->rowGrid.get()), 0, positionRowIndex, 9, 1);
     positionRowIndex++;
 }
