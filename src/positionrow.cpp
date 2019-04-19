@@ -1,6 +1,41 @@
 #include <positionrow.hpp>
 
+#include <iostream>
+
 PositionRow::PositionRow() {
+    auto builder = Gtk::Builder::create();
+    builder->add_from_resource("/org/gnome/gtkmm-testing/data/position_row.ui");
+
+    rowGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("position_row"));
+
+    auto tickerLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("ticker_label"));
+    tickerLabel->set_text("");
+
+    auto shareCountLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("share_count_label"));
+    shareCountLabel->set_text("");
+
+    auto shareBasisLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("share_basis_label"));
+    shareBasisLabel->set_text("");
+
+    auto lastTradeLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("last_trade_label"));
+    lastTradeLabel->set_text("");
+
+    auto shareChangeLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("share_change_label"));
+    shareChangeLabel->set_text("");
+
+    auto positionBasisLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("position_basis_label"));
+    positionBasisLabel->set_text("");
+
+    auto positionValueLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("position_value_label"));
+    positionValueLabel->set_text("");
+
+    auto positionChangeLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("position_change_label"));
+    positionChangeLabel->set_text("");
+
+    //Setup the row delete handler.
+    auto deleteEventBox = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("delete_event_box"));
+    deleteEventBox->set_events(Gdk::BUTTON_PRESS_MASK);
+    deleteEventBox->signal_button_press_event().connect( sigc::mem_fun(*this, &PositionRow::onDeleteBoxClicked) );
 }
 
 PositionRow::PositionRow(std::string ticker, int share_count, double share_basis) : m_ticker(ticker),
@@ -38,4 +73,9 @@ PositionRow::PositionRow(std::string ticker, int share_count, double share_basis
 }
 
 PositionRow::~PositionRow() {
+}
+
+bool PositionRow::onDeleteBoxClicked(GdkEventButton* button_event) {
+    std::cout << "you clicked the delete event box" << std::endl;
+    return true;
 }

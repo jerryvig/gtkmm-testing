@@ -7,6 +7,7 @@ class PositionRow {
 private:
 
 protected:
+    virtual bool onDeleteBoxClicked(GdkEventButton* button_event);
 
 public:
     PositionRow();

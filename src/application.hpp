@@ -11,6 +11,8 @@ private:
     void load_resources();
     void addColumnHeaderClickHandlers(Glib::RefPtr<Gtk::Builder>& builder);
 
+    int positionRowIndex;
+
 protected:
     GsmApplication();
 public:
@@ -20,6 +22,7 @@ public:
 protected:
     virtual void on_activate();
     virtual void addPositionRows(Glib::RefPtr<Gtk::Grid>& grid);
+    virtual void addNewPositionRow(Glib::RefPtr<Gtk::Grid>& grid);
     virtual int on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line);
     virtual void on_startup();
     virtual void onAddButtonClicked();

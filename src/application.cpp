@@ -80,24 +80,28 @@ void GsmApplication::on_activate() {
     Glib::RefPtr<Gtk::Button> addPositionRowButton = Glib::RefPtr<Gtk::Button>::cast_static(builder->get_object("add_row_button"));
     addPositionRowButton->signal_clicked().connect( sigc::mem_fun(*this, &GsmApplication::onAddButtonClicked) );
 
-    addPositionRows(rowsContainerGrid);
-
     addColumnHeaderClickHandlers(builder);
 
     add_window(*(rootWindow.get()));
     rootWindow->present();
 }
 
-static int positionRowIndex = 0;
+void GsmApplication::addNewPositionRow(Glib::RefPtr<Gtk::Grid>& grid) {
+    auto positionRow = std::make_shared<PositionRow>();
+    grid->attach(*(positionRow->rowGrid.get()), 0, positionRowIndex, 9, 1);
+    positionRowIndex++;
+}
 
 void GsmApplication::addPositionRows(Glib::RefPtr<Gtk::Grid>& grid) {
     // As you add these rows you should probably increment their IDs so they won't have duplicate ids.
-    std::shared_ptr<PositionRow> positionRow = std::make_shared<PositionRow>("AAPL", 500, 100.00);
-    grid->attach(*(positionRow->rowGrid.get()), 0, positionRowIndex, 8, 1);
+    // We could maybe use this as way to load the rows that have been saved. Those would be positions already
+    // saved in the application.
+    auto positionRow = std::make_shared<PositionRow>("AAPL", 500, 100.00);
+    grid->attach(*(positionRow->rowGrid.get()), 0, positionRowIndex, 9, 1);
     positionRowIndex++;
 
-    std::shared_ptr<PositionRow> positionRow1 = std::make_shared<PositionRow>("GOOG", 500, 100.00);
-    grid->attach(*(positionRow1->rowGrid.get()), 0, positionRowIndex, 8, 1);
+    auto positionRow1 = std::make_shared<PositionRow>("GOOG", 500, 100.00);
+    grid->attach(*(positionRow1->rowGrid.get()), 0, positionRowIndex, 9, 1);
     positionRowIndex++;
 }
 
