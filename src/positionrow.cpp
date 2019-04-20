@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#define ENTRY_WIDTH_CHARS 12
+
 PositionRow::PositionRow(int rowIndex) {
     builder = Gtk::Builder::create();
     builder->add_from_resource("/org/gnome/gtkmm-testing/data/position_row.ui");
@@ -9,14 +11,13 @@ PositionRow::PositionRow(int rowIndex) {
     rowGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("position_row"));
 
     auto tickerEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("ticker_entry"));
-    tickerEntry->set_width_chars(10);
+    tickerEntry->set_width_chars(ENTRY_WIDTH_CHARS);
 
-    auto shareCountLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("share_count_label"));
-    shareCountLabel->set_text("");
-    shareCountLabel->set_ellipsize(Pango::EllipsizeMode::ELLIPSIZE_END);
+    auto shareCountEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("share_count_entry"));
+    shareCountEntry->set_width_chars(ENTRY_WIDTH_CHARS);
 
-    auto shareBasisLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("share_basis_label"));
-    shareBasisLabel->set_text("");
+    auto shareBasisEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("share_basis_entry"));
+    shareBasisEntry->set_width_chars(ENTRY_WIDTH_CHARS);
 
     auto lastTradeLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("last_trade_label"));
     lastTradeLabel->set_text("");
@@ -60,33 +61,33 @@ PositionRow::PositionRow(std::string ticker, int share_count, double share_basis
     m_position_value(position_value),
     m_position_change(position_change)
 {
-    Glib::RefPtr<Gtk::Builder> rowBuilder = Gtk::Builder::create();
-    rowBuilder->add_from_resource("/org/gnome/gtkmm-testing/data/position_row.ui");
+    builder = Gtk::Builder::create();
+    builder->add_from_resource("/org/gnome/gtkmm-testing/data/position_row.ui");
 
-    rowGrid = Glib::RefPtr<Gtk::Grid>::cast_static(rowBuilder->get_object("position_row"));
+    rowGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("position_row"));
 
-    auto tickerEntry = Glib::RefPtr<Gtk::Entry>::cast_static(rowBuilder->get_object("ticker_entry"));
+    auto tickerEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("ticker_entry"));
     tickerEntry->set_text(m_ticker);
 
-    Glib::RefPtr<Gtk::Label> shareCountLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("share_count_label"));
-    shareCountLabel->set_text(std::to_string(share_count));
+    auto shareCountEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("share_count_entry"));
+    shareCountEntry->set_text(std::to_string(share_count));
 
-    Glib::RefPtr<Gtk::Label> shareBasisLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("share_basis_label"));
+    auto shareBasisLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("share_basis_label"));
     shareBasisLabel->set_text(std::to_string(share_basis));
 
-    Glib::RefPtr<Gtk::Label> lastTradeLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("last_trade_label"));
+    auto lastTradeLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("last_trade_label"));
     lastTradeLabel->set_text(std::to_string(last_trade));
 
-    Glib::RefPtr<Gtk::Label> shareChangeLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("share_change_label"));
+    auto shareChangeLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("share_change_label"));
     shareChangeLabel->set_text(std::to_string(share_change));
 
-    Glib::RefPtr<Gtk::Label> positionBasisLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("position_basis_label"));
+    auto positionBasisLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("position_basis_label"));
     positionBasisLabel->set_text(std::to_string(position_basis));
 
-    Glib::RefPtr<Gtk::Label> positionValueLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("position_value_label"));
+    auto positionValueLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("position_value_label"));
     positionValueLabel->set_text(std::to_string(position_value));
 
-    Glib::RefPtr<Gtk::Label> positionChangeLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("position_change_label"));
+    auto positionChangeLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("position_change_label"));
     positionChangeLabel->set_text(std::to_string(position_change));
 }
 
