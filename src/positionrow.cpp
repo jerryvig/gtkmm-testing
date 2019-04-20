@@ -67,12 +67,15 @@ PositionRow::PositionRow(std::string ticker, int share_count, double share_basis
     rowGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("position_row"));
 
     auto tickerEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("ticker_entry"));
+    tickerEntry->set_width_chars(ENTRY_WIDTH_CHARS);
     tickerEntry->set_text(m_ticker);
 
     auto shareCountEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("share_count_entry"));
+    shareCountEntry->set_width_chars(ENTRY_WIDTH_CHARS);
     shareCountEntry->set_text(std::to_string(share_count));
 
-    auto shareBasisLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("share_basis_label"));
+    auto shareBasisEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("share_basis_entry"));
+    shareBasisEntry->set_width_chars(ENTRY_WIDTH_CHARS);
     shareBasisLabel->set_text(std::to_string(share_basis));
 
     auto lastTradeLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("last_trade_label"));
