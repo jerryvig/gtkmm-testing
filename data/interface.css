@@ -6,6 +6,7 @@ label {
     background-color: white;
     color: black;
     font-weight: bold;
+    font-size: large;
     padding: 8px;
     min-width: 110px;
 }
@@ -19,4 +20,10 @@ grid {
 
 #add-button-row {
     background-color: lightgray;
+}
+
+#delete-label {
+    color: red;
+    font-weight: bold;
+    font-size: xx-large;
 }

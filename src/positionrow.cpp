@@ -10,6 +10,9 @@ PositionRow::PositionRow(int rowIndex) {
 
     rowGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("position_row"));
 
+    Glib::RefPtr<Gtk::Label> deleteLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("delete_label"));
+    deleteLabel->set_name("delete-label");
+
     auto tickerEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("ticker_entry"));
     tickerEntry->set_width_chars(ENTRY_WIDTH_CHARS);
 
@@ -61,6 +64,9 @@ PositionRow::PositionRow(std::string ticker, int share_count, double share_basis
 
     rowGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("position_row"));
 
+    Glib::RefPtr<Gtk::Label> deleteLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("delete_label"));
+    deleteLabel->set_name("delete-label");
+
     auto tickerEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("ticker_entry"));
     tickerEntry->set_width_chars(ENTRY_WIDTH_CHARS);
     tickerEntry->set_text(m_ticker);
@@ -71,7 +77,7 @@ PositionRow::PositionRow(std::string ticker, int share_count, double share_basis
 
     auto shareBasisEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("share_basis_entry"));
     shareBasisEntry->set_width_chars(ENTRY_WIDTH_CHARS);
-    shareBasisLabel->set_text(std::to_string(share_basis));
+    shareBasisEntry->set_text(std::to_string(share_basis));
 
     auto lastTradeLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("last_trade_label"));
     lastTradeLabel->set_text(std::to_string(last_trade));
