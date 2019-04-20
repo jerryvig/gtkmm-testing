@@ -7,13 +7,14 @@ class PositionRow {
 private:
     Glib::RefPtr<Gtk::EventBox> tickerEventBox;
     std::shared_ptr<Gtk::Entry> tickerEntry;
+    Glib::RefPtr<Gtk::Grid> containerGrid;
 
 protected:
     virtual bool onDeleteBoxClicked(GdkEventButton* button_event);
     virtual bool onTickerBoxClicked(GdkEventButton* button_event);
 
 public:
-    PositionRow(int rowIndex);
+    PositionRow(int rowIndex, Glib::RefPtr<Gtk::Grid>& containerGrid);
     PositionRow(std::string ticker, int share_count, double share_basis, double last_trade, double share_change,
                 double position_basis, double position_value, double position_change);
     ~PositionRow();

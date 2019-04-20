@@ -4,7 +4,9 @@
 
 #define ENTRY_WIDTH_CHARS 12
 
-PositionRow::PositionRow(int rowIndex) {
+PositionRow::PositionRow(int rowIndex, Glib::RefPtr<Gtk::Grid>& containerGrid) :
+    containerGrid(containerGrid)
+{
     builder = Gtk::Builder::create();
     builder->add_from_resource("/org/gnome/gtkmm-testing/data/position_row.ui");
 
@@ -37,12 +39,12 @@ PositionRow::PositionRow(int rowIndex) {
     auto positionChangeLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("position_change_label"));
     positionChangeLabel->set_text("");
 
-    //Setup the row delete handler.
+    // Setup the row delete handler.
     auto deleteEventBox = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("delete_event_box"));
     deleteEventBox->set_events(Gdk::BUTTON_PRESS_MASK);
     deleteEventBox->signal_button_press_event().connect( sigc::mem_fun(*this, &PositionRow::onDeleteBoxClicked) );
 
-    //Setup the ticker eventbox click handler.
+    // Setup the ticker eventbox click handler.
     tickerEventBox = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("ticker_event_box"));
     tickerEventBox->set_events(Gdk::BUTTON_PRESS_MASK);
     tickerEventBox->signal_button_press_event().connect( sigc::mem_fun(*this, &PositionRow::onTickerBoxClicked) );
@@ -100,6 +102,10 @@ PositionRow::~PositionRow() {
 
 bool PositionRow::onDeleteBoxClicked(GdkEventButton* button_event) {
     std::cout << "you clicked the delete event box" << std::endl;
+
+    containerGrid->remove(*(rowGrid.get()));
+    // Still need to readjust the size of the larger grid.
+
     return true;
 }
 
