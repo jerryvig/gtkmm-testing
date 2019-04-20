@@ -20,7 +20,7 @@ GsmApplication::GsmApplication()
     Glib::set_application_name(_("gtkmm_testing"));
 }
 
-Glib::RefPtr<GsmApplication> GsmApplication::get () {
+Glib::RefPtr<GsmApplication> GsmApplication::get() {
     static Glib::RefPtr<GsmApplication> singleton;
     if (!singleton) {
         singleton = Glib::RefPtr<GsmApplication>(new GsmApplication());
@@ -69,13 +69,14 @@ void GsmApplication::on_activate() {
     auto builder = Gtk::Builder::create();
     builder->add_from_resource("/org/gnome/gtkmm-testing/data/interface.ui");
 
-    auto rootWindow = Glib::RefPtr<Gtk::Window>::cast_static(builder->get_object("window"));
+    rootWindow = Glib::RefPtr<Gtk::Window>::cast_static(builder->get_object("window"));
     auto screen = rootWindow->get_screen();
     Gtk::StyleContext::add_provider_for_screen(screen, cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
 
     auto layoutGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("grid"));
 
     rowsContainerGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("rows_container"));
+    rowsContainerGrid->set_name("rows-container");
 
     auto addPositionRowButton = Glib::RefPtr<Gtk::Button>::cast_static(builder->get_object("add_row_button"));
     addPositionRowButton->signal_clicked().connect( sigc::mem_fun(*this, &GsmApplication::onAddButtonClicked) );
@@ -93,7 +94,7 @@ void GsmApplication::on_activate() {
 }
 
 void GsmApplication::addNewPositionRow(Glib::RefPtr<Gtk::Grid>& grid) {
-    auto positionRow = std::make_shared<PositionRow>(positionRowIndex, rowsContainerGrid);
+    auto positionRow = std::make_shared<PositionRow>(positionRowIndex, rowsContainerGrid, rootWindow);
     positionRowList.push_back(positionRow);
 
     grid->attach(*(positionRow->rowGrid.get()), 0, positionRowIndex, 9, 1);

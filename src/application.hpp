@@ -39,6 +39,7 @@ protected:
 
     std::vector<Gtk::Label*> rowLabels;
     Glib::RefPtr<Gtk::Grid> rowsContainerGrid;
+    Glib::RefPtr<Gtk::Window> rootWindow;
 };
 
 #endif /* _GSM_APPLICATION_H_ */

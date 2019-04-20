@@ -3,7 +3,6 @@ window {
 }
 
 label {
-    background-color: white;
     color: black;
     font-weight: bold;
     font-size: large;
@@ -19,11 +18,15 @@ grid {
 }
 
 #add-button-row {
-    background-color: lightgray;
+    background-color: white;
 }
 
 #delete-label {
     color: red;
     font-weight: bold;
     font-size: xx-large;
+}
+
+#rows-container {
+    background-color: white;
 }

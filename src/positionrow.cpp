@@ -4,8 +4,10 @@
 
 #define ENTRY_WIDTH_CHARS 12
 
-PositionRow::PositionRow(int rowIndex, Glib::RefPtr<Gtk::Grid>& containerGrid) :
-    containerGrid(containerGrid)
+PositionRow::PositionRow(int rowIndex, Glib::RefPtr<Gtk::Grid>& containerGrid, Glib::RefPtr<Gtk::Window>& appRootWindow) :
+    rowIndex(rowIndex),
+    containerGrid(containerGrid),
+    appRootWindow(appRootWindow)
 {
     builder = Gtk::Builder::create();
     builder->add_from_resource("/org/gnome/gtkmm-testing/data/position_row.ui");
@@ -104,7 +106,7 @@ bool PositionRow::onDeleteBoxClicked(GdkEventButton* button_event) {
     std::cout << "you clicked the delete event box" << std::endl;
 
     containerGrid->remove(*(rowGrid.get()));
-    // Still need to readjust the size of the larger grid.
+    appRootWindow->resize(100, 50);
 
     return true;
 }
