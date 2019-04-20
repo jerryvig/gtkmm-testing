@@ -69,15 +69,15 @@ void GsmApplication::on_activate() {
     auto builder = Gtk::Builder::create();
     builder->add_from_resource("/org/gnome/gtkmm-testing/data/interface.ui");
 
-    Glib::RefPtr<Gtk::Window> rootWindow = Glib::RefPtr<Gtk::Window>::cast_static(builder->get_object("window"));
-    Glib::RefPtr<Gdk::Screen> screen = rootWindow->get_screen();
+    auto rootWindow = Glib::RefPtr<Gtk::Window>::cast_static(builder->get_object("window"));
+    auto screen = rootWindow->get_screen();
     Gtk::StyleContext::add_provider_for_screen(screen, cssProvider, GTK_STYLE_PROVIDER_PRIORITY_USER);
 
-    Glib::RefPtr<Gtk::Grid> layoutGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("grid"));
+    auto layoutGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("grid"));
 
     rowsContainerGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("rows_container"));
 
-    Glib::RefPtr<Gtk::Button> addPositionRowButton = Glib::RefPtr<Gtk::Button>::cast_static(builder->get_object("add_row_button"));
+    auto addPositionRowButton = Glib::RefPtr<Gtk::Button>::cast_static(builder->get_object("add_row_button"));
     addPositionRowButton->signal_clicked().connect( sigc::mem_fun(*this, &GsmApplication::onAddButtonClicked) );
     auto addButtonRow = Glib::RefPtr<Gtk::Button>::cast_static(builder->get_object("add_button_row"));
     addButtonRow->set_name("add-button-row");
@@ -87,8 +87,9 @@ void GsmApplication::on_activate() {
     add_window(*(rootWindow.get()));
     rootWindow->present();
 
-    std::cout << "grid->get_width() = " << layoutGrid->get_width() << std::endl;
-    addButtonRow->set_size_request(layoutGrid->get_width(), 1);
+    // we still need to fix the width on the last row for the add button.
+    // std::cout << "grid->get_width() = " << rowsContainerGrid->get_width() << std::endl;
+    // addButtonRow->set_size_request(rowsContainerGrid->get_width(), 1);
 }
 
 void GsmApplication::addNewPositionRow(Glib::RefPtr<Gtk::Grid>& grid) {
