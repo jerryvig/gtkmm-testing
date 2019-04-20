@@ -22,9 +22,9 @@
             <object id="ticker_event_box" class="GtkEventBox">
                 <property name="visible">True</property>
                 <child>
-                    <object id="ticker_label" class="GtkLabel">
+                    <object id="ticker_entry" class="GtkEntry">
                         <property name="visible">True</property>
-                        <property name="label">A</property>
+                        <property name="placeholder_text">enter ticker</property>
                         <property name="halign">GTK_ALIGN_START</property>
                     </object>
                 </child>

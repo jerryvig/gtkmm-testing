@@ -8,9 +8,8 @@ PositionRow::PositionRow(int rowIndex) {
 
     rowGrid = Glib::RefPtr<Gtk::Grid>::cast_static(builder->get_object("position_row"));
 
-    auto tickerLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("ticker_label"));
-    tickerLabel->set_text("(click to enter ticker)");
-    tickerLabel->set_ellipsize(Pango::EllipsizeMode::ELLIPSIZE_END);
+    auto tickerEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("ticker_entry"));
+    tickerEntry->set_width_chars(10);
 
     auto shareCountLabel = Glib::RefPtr<Gtk::Label>::cast_static(builder->get_object("share_count_label"));
     shareCountLabel->set_text("");
@@ -45,9 +44,9 @@ PositionRow::PositionRow(int rowIndex) {
     tickerEventBox->signal_button_press_event().connect( sigc::mem_fun(*this, &PositionRow::onTickerBoxClicked) );
 
     // Make entry objects here.
-    tickerEntry = std::make_shared<Gtk::Entry>();
+    /* tickerEntry = std::make_shared<Gtk::Entry>();
     tickerEntry->set_max_width_chars(5);
-    tickerEntry->set_text("");
+    tickerEntry->set_text(""); */
 }
 
 PositionRow::PositionRow(std::string ticker, int share_count, double share_basis, double last_trade, double share_change,
@@ -66,8 +65,8 @@ PositionRow::PositionRow(std::string ticker, int share_count, double share_basis
 
     rowGrid = Glib::RefPtr<Gtk::Grid>::cast_static(rowBuilder->get_object("position_row"));
 
-    Glib::RefPtr<Gtk::Label> tickerLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("ticker_label"));
-    tickerLabel->set_text(m_ticker);
+    auto tickerEntry = Glib::RefPtr<Gtk::Entry>::cast_static(rowBuilder->get_object("ticker_entry"));
+    tickerEntry->set_text(m_ticker);
 
     Glib::RefPtr<Gtk::Label> shareCountLabel = Glib::RefPtr<Gtk::Label>::cast_static(rowBuilder->get_object("share_count_label"));
     shareCountLabel->set_text(std::to_string(share_count));
@@ -102,11 +101,11 @@ bool PositionRow::onDeleteBoxClicked(GdkEventButton* button_event) {
 bool PositionRow::onTickerBoxClicked(GdkEventButton* button_event) {
     std::cout << "you clicked the ticker event box. need to add an input inside of the event box" << std::endl;
 
-    tickerEventBox->remove();
+    // tickerEventBox->remove();
     tickerEntry->set_visibility(true);
 
     tickerEntry->set_width_chars(10);
-    tickerEventBox->add(*tickerEntry);
+    //tickerEventBox->add(*tickerEntry);
     tickerEntry->show();
 
     std::cout << "allocated width = " << tickerEventBox->get_allocated_width() << std::endl;
