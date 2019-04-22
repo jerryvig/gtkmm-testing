@@ -19,6 +19,8 @@ PositionRow::PositionRow(int rowIndex, Glib::RefPtr<Gtk::Grid>& containerGrid, G
 
     auto tickerEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("ticker_entry"));
     tickerEntry->set_width_chars(ENTRY_WIDTH_CHARS);
+    tickerEntry->set_events(Gdk::FOCUS_CHANGE_MASK);
+    tickerEntry->signal_focus_out_event().connect( sigc::mem_fun(*this, &PositionRow::onTickerEntryUnfocused) );
 
     auto shareCountEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("share_count_entry"));
     shareCountEntry->set_width_chars(ENTRY_WIDTH_CHARS);
@@ -45,11 +47,6 @@ PositionRow::PositionRow(int rowIndex, Glib::RefPtr<Gtk::Grid>& containerGrid, G
     auto deleteEventBox = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("delete_event_box"));
     deleteEventBox->set_events(Gdk::BUTTON_PRESS_MASK);
     deleteEventBox->signal_button_press_event().connect( sigc::mem_fun(*this, &PositionRow::onDeleteBoxClicked) );
-
-    // Setup the ticker eventbox click handler.
-    tickerEventBox = Glib::RefPtr<Gtk::EventBox>::cast_static(builder->get_object("ticker_event_box"));
-    tickerEventBox->set_events(Gdk::BUTTON_PRESS_MASK);
-    tickerEventBox->signal_button_press_event().connect( sigc::mem_fun(*this, &PositionRow::onTickerBoxClicked) );
 }
 
 PositionRow::PositionRow(std::string ticker, int share_count, double share_basis, double last_trade, double share_change,
@@ -74,6 +71,7 @@ PositionRow::PositionRow(std::string ticker, int share_count, double share_basis
     auto tickerEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("ticker_entry"));
     tickerEntry->set_width_chars(ENTRY_WIDTH_CHARS);
     tickerEntry->set_text(m_ticker);
+    tickerEntry->grab_focus();
 
     auto shareCountEntry = Glib::RefPtr<Gtk::Entry>::cast_static(builder->get_object("share_count_entry"));
     shareCountEntry->set_width_chars(ENTRY_WIDTH_CHARS);
@@ -111,17 +109,9 @@ bool PositionRow::onDeleteBoxClicked(GdkEventButton* button_event) {
     return true;
 }
 
-bool PositionRow::onTickerBoxClicked(GdkEventButton* button_event) {
-    std::cout << "you clicked the ticker event box. need to add an input inside of the event box" << std::endl;
-
-    // tickerEventBox->remove();
-    tickerEntry->set_visibility(true);
-
-    tickerEntry->set_width_chars(10);
-    //tickerEventBox->add(*tickerEntry);
-    tickerEntry->show();
-
-    std::cout << "allocated width = " << tickerEventBox->get_allocated_width() << std::endl;
+bool PositionRow::onTickerEntryUnfocused(GdkEventFocus* gdk_event) {
+    std::cout << "you unfocused the ticker entry" << std::endl;
+    std::cout << "aqui esta usted" << std::endl;
 
     return true;
 }

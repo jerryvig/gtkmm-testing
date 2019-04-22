@@ -13,7 +13,7 @@
                             <object id="delete_column_label" class="GtkLabel">
                                 <property name="visible">True</property>
                                 <property name="label">Delete Row</property>
-                                <property name="halign">GTK_ALIGN_CENTER</property>
+                                <property name="halign">GTK_ALIGN_STARt</property>
                             </object>
                         </child>
                     </object>

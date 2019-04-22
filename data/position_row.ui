@@ -8,7 +8,7 @@
                     <object id="delete_label" class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="label">×</property>
-                        <property name="halign">GTK_ALIGN_CENTER</property>
+                        <property name="halign">GTK_ALIGN_START</property>
                     </object>
                 </child>
             </object>

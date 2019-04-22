@@ -13,7 +13,7 @@ private:
 
 protected:
     virtual bool onDeleteBoxClicked(GdkEventButton* button_event);
-    virtual bool onTickerBoxClicked(GdkEventButton* button_event);
+    virtual bool onTickerEntryUnfocused(GdkEventFocus* gdk_event);
 
 public:
     PositionRow(int rowIndex, Glib::RefPtr<Gtk::Grid>& containerGrid, Glib::RefPtr<Gtk::Window>& appRootWindow);
